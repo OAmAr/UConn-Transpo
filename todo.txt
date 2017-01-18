@@ -1,0 +1,13 @@
+Todo:
+
+	#initialize git repo
+	add all members to git
+	make sure everyone knows git basics
+	decide on primary features
+	decide on secondary features
+	create design document detailing possible implementations
+	split into smaller tasks
+	assign tasks 
+	begin tasks
+	finish todo
+
