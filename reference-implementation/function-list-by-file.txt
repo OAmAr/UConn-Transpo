@@ -1,0 +1,186 @@
+This is a rough list of all the functions that the current webapp uses. 
+By rough list I mean that I ran `grep -R "function " ./` on this directory and
+spent about five minutes editing down the list. We should be able to rewrite 
+the functions we need using the same API calls/URLs that the webapp uses. 
+
+
+./custom_marker.js:function CustomMarker(latlng,  map) {
+./vehicle.js:function Vehicle() {
+./vehicle.js:    normaliseHeading = function (heading) {
+./vehicle.js:    this.buildVehicleMarker = function () {
+./vehicle.js:    this.updateVehicleEstimates = function (marker, estimates, showCapacity, toggleVisibility) {
+./vehicle.js:            var matches = _routes.filter(function (n) { return n.RouteID === routeID; });
+./vehicle.js:                $.when(vehicleCapacity).then(function (result) {//when promise resolved
+./vehicle.js:    this.changeHeadingAndSpeed = function (vehiclePosition) {
+./vehicle.js:    this.changeRoute = function (route) {
+./vehicle.js:    this.moveMarkers = function (point) {
+./vehicle.js:    this.hideAllVehicleEstimates = function () {
+./vehicle.js:Vehicle.prototype.Initialize = function (vehiclePosition, route) {
+./vehicle.js:Vehicle.prototype.Move = function (vehiclePosition, route) {
+./vehicle.js:Vehicle.prototype.Enable = function () {
+./vehicle.js:Vehicle.prototype.Disable = function () {
+./vehicle.js:Vehicle.prototype.ShowRouteForVehicle = function () {
+./vehicle.js:Vehicle.prototype.HideRouteForVehicle = function () {
+./vehicle.js:Vehicle.prototype.SetOnTimeStatus = function (onTimeStatus) {
+./vehicle.js:Vehicle.prototype.RemoveFromMap = function () {
+./map_Estimates.js:function getStopArrivals() {
+./map_Estimates.js:        function (data) {
+./map_Estimates.js:            $('.vehicleInfoBox:not(.hideInfoBox):has(.estimates:visible)').each(function () {
+./map_Estimates.js:        function (jqXHR, textStatus, errorThrown) {
+./map_Estimates.js:            function () {
+./map_Estimates.js:                setTimeout(function () { getStopArrivals(); }, _refreshEstimatesMilliseconds);
+./map_Estimates.js:function getVehicleEstimates(vehicleIds) {
+./map_Estimates.js:        function (data) {
+./map_Estimates.js:            $.each(data, function (index, vehicleEstimates) {
+./map_Estimates.js:                var matches = _vehicles.filter(function (v) { return v.VehicleID === vehicleEstimates.VehicleID; });
+./map_Estimates.js:function getStopArrivalTimes() {
+./map_Estimates.js:        function (data) {
+./map_Estimates.js:        function (jqXHR, textStatus, errorThrown) {
+./map_Estimates.js:            function () {
+./map_Estimates.js:                setTimeout(function () { getStopArrivalTimes(); }, _refreshEstimatesMilliseconds);
+./map_Estimates.js:function layoutEstimates(data) {
+./map_Estimates.js:function resetRoutesOnSchedule() {
+./map_Estimates.js:            var dayOfWeekRoutes = $.grep(_dayOfWeekScheduleRouteTimes, function (obj) { return obj.DayOfWeek === currentDayOfWeek; });
+./map_Estimates.js:                var routes = $.grep(dayOfWeekRoutes.Routes, function (obj) { return obj.RouteID === _routes[x].RouteID; });
+./map_Estimates.js:            var routeSchedules = $.grep(_routeSchedules, function (a, b) { return a.RouteID === _routes[x].RouteID; });
+./map_Estimates.js:                $.each(routeSchedules, function (index, routeSchedule) {
+./map_Estimates.js:        if (_specificRoutes.filter(function (n) { return n == _routes[x].RouteID; }).length > 0) {
+./map_Estimates.js:function appendCurrentDate(localDate, newDate) {
+./map_Estimates.js:function layoutRouteArrivals() {
+./map_Estimates.js:    $.each($('table.arrivals'), function (index, table) {
+./map_Estimates.js:        matches = _routes.filter(function (r) { return r.RouteID == routeID; });
+./map_Estimates.js:                var estimates = _estimates.filter(function (n) { return n.RouteID == routeID; });
+./map_Estimates.js:                            var vehicles = _vehicles.filter(function (v) { return v.VehicleID == vehicleId; });
+./map_Estimates.js:        $.each($(table).find('tr[routestopid]'), function (index, row) {
+./map_Estimates.js:            matches = _estimates.filter(function (n) { return n.RouteID == routeID && n.RouteStopID == routeStopID; });
+./map_Estimates.js:                    $.each($(row).find('td[vehicleID]'), function (index, cell) {
+./map_Estimates.js:                        matches = arrival.VehicleEstimates.filter(function (n) { return n.VehicleID == vehicleID; });
+./map_Estimates.js:                        $.each($(row).children('.time'), function (timeIndex, cell) {//for each time cell, insert a corresponding estimate
+./map_Estimates.js:        $.each(stopPopup.find('.routeItem'), function (index, routeItem) {
+./map_Estimates.js:            var matches = _routes.filter(function (r) { return r.RouteID == routeID; });
+./map_Estimates.js:function fillArrivalTimeCell(scheduleResults, cell, etaTypeID) {
+./map_Estimates.js:function getEstimateText(estimate) {
+./map_Estimates.js:    var matches = _vehicles.filter(function (v) { return v.VehicleID == estimate.VehicleID; });
+./map_Estimates.js:function getScheduleText(arrival, index, etaTypeID) {
+./map_Estimates.js:                orderedEstimates = orderedEstimates.filter(function (n) {
+./map_Estimates.js:            var v = _vehicles.filter(function (v) { return v.VehicleID === estimate.VehicleID; });
+./map_Estimates.js:                var vs = _vehicles.filter(function (v) { return v.VehicleID === estimate.VehicleID; });
+./map_Estimates.js:            var matches = _vehicles.filter(function (v) { return v.VehicleID == estimate.VehicleID; });
+./map_Estimates.js:function getVehicleRouteStopEstimate(routeStopID, vehicleID) {
+./map_Estimates.js:    var matches = _estimates.filter(function (n) {
+./map_Estimates.js:        matches = arrival.VehicleEstimates.filter(function (v) { return v.VehicleID == vehicleID; });
+./map_Estimates.js:function getVehicleRouteStopEstimateText(routeStopID, vehicleID) {
+./map_Estimates.js:    var matches = _estimates.filter(function (n) {
+./map_Estimates.js:        matches = arrival.VehicleEstimates.filter(function (v) { return v.VehicleID == vehicleID; });
+./map_Estimates.js:function getRouteStopArrivalsForPopup(route, routeStopID) {
+./map_Estimates.js:    var matches = _estimates.filter(function (n) { return n.RouteStopID == routeStopID; });
+./map_Estimates.js:            $.each(arrival.VehicleEstimates, function (index, estimate) {
+./map_Estimates.js:function toggleRouteMenuVisibility() {
+./map_Estimates.js:function resizeStopColumns() {
+./map_Estimates.js:    $('.arrivals tr').each(function (rowIndex, row) {//loop over each row in the routes
+./map_Estimates.js:function flagOffScheduleArrivals() {
+./map_Estimates.js:        $.each(_onTimeRouteStopIDs, function (i, routeStopID) {
+./map_Estimates.js:            var arrivals = _estimates.filter(function (r) { return r.ScheduledTimes != null && r.ScheduledTimes.length > 0 && r.VehicleEstimates != null && r.VehicleEstimates.length > 0 && r.RouteStopID === routeStopID; });
+./map_Estimates.js:            $.each(arrivals, function (index, arrival) {
+./map_Estimates.js:                $.each(arrival.ScheduledTimes, function (scheduleIndex, schedule) {
+./map_Estimates.js:                        var matches = arrival.VehicleEstimates.filter(function (e) { return e.VehicleID === schedule.AssignedVehicleId; });
+./map_Estimates.js:                                    if (vehicles.filter(function (v) { return v.VehicleID === vehicleID; }).length === 0)
+./map_Estimates.js:                                    if (vehicles.filter(function (v) { return v.VehicleID === vehicleID; }).length === 0)
+./map_Estimates.js:    $.each(_vehicles, function (index, vehicle) {
+./map_Estimates.js:        var arry = vehicles.filter(function (v) { return v.VehicleID === vehicle.VehicleID; });
+./map_Estimates.js:    $.each($('td[routestopID]').filter('[onTimeStatus=' + OnTimeStatuses.Late + '],[onTimeStatus=' + OnTimeStatuses.Early + ']'), function (index, cell) {
+./map_Estimates.js:        var arry = stops.filter(function (s) { return s.RouteStopID === routeStopID && s.Arrival === arrival; });
+./map_Estimates.js:    $.each(stops, function (index, stop) {
+./map_Estimates.js:function sortBySecondsToStop(a, b) {
+./map_Estimates.js:function sortBySecondsToStopAndOnRoute(a, b) {
+./map_Estimates.js:function layoutStopArrivalTimes(data) {
+./map_Estimates.js:        $.each($('table.arrivals'), function (index, table) {
+./map_Estimates.js:            matches = _routes.filter(function (r) { return r.RouteID == routeID; });
+./map_Estimates.js:                    var estimates = data.filter(function (n) { return n.RouteId === routeId; });
+./map_Estimates.js:                                var vehicles = _vehicles.filter(function (v) { return v.VehicleID === vehicleId; });
+./map_Estimates.js:            $.each($(table).find('tr[routestopid]'), function (index, row) {
+./map_Estimates.js:                var matches = data.filter(function (n) { return n.RouteId === routeId && n.RouteStopId === routeStopId; });
+./map_Estimates.js:                    $.each($(row).find('td[vehicleID]'), function (index, cell) {
+./map_Estimates.js:                        var times = stopTimes.Times.filter(function (n) { return n.VehicleId === vehicleId });
+./map_Estimates.js:                    $.each($(row).find('td[arrival]'), function (index, cell) {
+./map_Estimates.js:function printStopTimeVerbiage(arrivalTime, cell) {
+./map_Estimates.js:function getCurrentTime() {
+./map_Routes.js:function getRoutes() {
+./map_Routes.js:                        $.each(routesToEnable, function (index, myRoute) {
+./map_Routes.js:                            var cnt = _routes.filter(function (n) { return n.RouteID === routeId && n.OnSchedule }).length;
+./map_Routes.js:                            function (routeGroups) {
+./map_Routes.js:                                $.each(_routeGroups, function (index, routeGroup) {
+./map_Routes.js:                            function (jqXHR, textStatus, errorThrown) {
+./map_Routes.js:function processRouteSchedule(routeSchedulesData) {
+./map_Routes.js:                        var dayOfWeekRoutes = $.grep(_dayOfWeekScheduleRouteTimes, function (obj) { return obj.DayOfWeek === dayOfWeek; });
+./map_Routes.js:                            var existingRoutes = $.grep(dayOfWeekRoutes.Routes, function (obj) { return obj.RouteID === route.RouteId; });
+./map_Routes.js:                                    var existingTimeSpans = $.grep(existingRoute.ActiveTimeSpans, function (obj) { return obj.StartSeconds === startSeconds && obj.EndSeconds === endSeconds; });
+./map_Routes.js:        $.each(routeSchedulesData, function (index, routeSchedule) {
+./map_Routes.js:function layoutRoutes(routes) {
+./map_Routes.js:            if (_specificRoutes.filter(function (n) { return n == obj.RouteID; }).length === 0)
+./map_Routes.js:            else if (_specificRoutes.filter(function (n) { return n == route.RouteID; }).length > 0) {
+./map_Routes.js:function buildInstructions(ul) {//obselete - unused
+./map_Routes.js:function toggleShowAllRouteLines(showAllRoutesBtn) {
+./map_Vehicles.js:function getVehiclePositions() {
+./map_Vehicles.js:                setTimeout(function () { getVehiclePositions(); }, _refreshVehiclesMilliseconds);
+./map_Vehicles.js:function layoutVehicles(vehicles) {
+./map_Vehicles.js:            if (_restrictVehicleIds.filter(function (n) { return n == vehicle.VehicleID; }).length === 0) {
+./map_Vehicles.js:function removeVehicle(vehicle) {
+./map_Vehicles.js:function getVehicleCapacity(vehicleID) {
+./map_Vehicles.js:function getVehicleCapacities() {
+./main.js:function loadEverything() {
+./main.js:        $('body').on('click', '#submitPassword', function (event) {
+./main.js:            //$("body").find('a').each(function () {
+./main.js:            $('body').on('click', 'a', function (e) {
+./main.js:        $('body').on('click', '#contact_us', function (event) {
+./main.js:                initializeMapTemplate(largeScreenBreakpoint, config); // this is the function that gets called when everything is loaded
+./main.js:function initializeApp(){
+./main.js:            var matches = _routeGroups.filter(function (n) { return n.RouteGroupId === routeGroupId; });
+./main.js:            $.each(_routes, function (index, route) {
+./main.js:            setTimeout(function () {
+./main.js:function getConfig(){
+./main.js:function setupPrivateMapVariables(config) {
+./main.js:function setupMap() {
+./main.js:function setupTrafficOverlay() {
+./main.js:function toggleRoute(routeID, isActive) {
+./main.js:function toggleRouteButton(routeBtn, beingActivatedOnLoad) {
+./main.js:function toggleActiveAllRoutes(button){
+./main.js:function clearInfoPanel(){
+./main.js:function clearFavoritesPanel(){
+./main.js:function hideInfoBox(myInfobox){
+./main.js:function setHtmlNoTouch(isTouchDevice){
+./main.js:function hoverOverVehicle(routeID) {
+./main.js:function hoverOffVehicle(routeID) {
+./main.js:function is_touch_device() {
+./main.js:function enableMapSecurity(clientId) {
+./main.js:function validatePassword() {
+./main.js:function setLoadingStatus(status) {
+./main.js:function setupJoyride() {
+./main.js:        $('.tour').click(function () {
+./main.js:                preStepCallback: function (index, tip) {
+./main.js:                postStepCallback: function (index, tip) {
+./main.js:                            setTimeout(function () {
+./main.js:                            var routes = _routes.filter(function (route) { return route.RouteID === routeId; });
+./main.js:                                var markers = route.StopMarkers.filter(function (marker) { return marker.RouteStop.ShowArrivalsOnMap === true; });
+./main.js:                            setTimeout(function () {
+./map_Overlays.js:function getMapOverlays() {
+./map_Overlays.js:                function (overlays) {
+./map_Overlays.js:                    $.each(overlays, function (o, overlay) {
+./map_Overlays.js:                function (jqXHR, textStatus, errorThrown) {
+./map_Overlays.js:function CustomOverlay(bounds, image, map) {
+./map_Overlays.js:CustomOverlay.prototype.onAdd = function () {
+./map_Overlays.js:CustomOverlay.prototype.draw = function () {
+./map_Overlays.js:CustomOverlay.prototype.onRemove = function () {
+./utilities.js:function numericWithDecimalKeypress(e) {
+./utilities.js:function feetBetweenPoints(a, b) {
+./utilities.js:function bearingBetweenPoints(a, b) {
+./utilities.js:function deg2rad(deg) {
+./utilities.js:function round(x) {
+./utilities.js:function getLocation(callback) {
+./utilities.js:function supportsLocalStorage() {
+./utilities.js:    function isAvailable() {
+./utilities.js:    function createCookie(key, value, exp) {
+./utilities.js:    function readCookie(key) {
+./utilities.js:    function deleteCookie(key) {
+./utilities.js:function ISODurationToSeconds(str) {
+./route.js:function Route(route) {
