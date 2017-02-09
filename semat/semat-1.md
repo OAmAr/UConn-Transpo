@@ -54,7 +54,7 @@ Currently we are planning, our resources have been focused on groundwork.
 - Priority clear
 
 ###Action Items
-We need to better understand our resources and limitations. We've had some grand ideas, but we haven'y fully accounted for how much time we are going to put into this project amidst our other classes, activities, etc. Once we have an effort commitment from everyone, we will be prepared to being building.
+We need to better understand our resources and limitations. We've had some grand ideas, but we haven't fully accounted for how much time we are going to put into this project amidst our other classes, activities, etc. Once we have an effort commitment from everyone, we will be prepared to being building.
 
 ##Way of Working
 
