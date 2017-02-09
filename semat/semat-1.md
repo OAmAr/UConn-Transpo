@@ -20,7 +20,7 @@ The deplorability of the current bus app is real.
 ###Identified
 - Idea behind opportunity defined
 - At least one investing stakeholder interested (our group)
-- Other stakeholders identified (UConn Transportation, students,e etc)
+- Other stakeholders identified (UConn Transportation, students, etc)
 
 ###Solution Needed
 - Solution identified
