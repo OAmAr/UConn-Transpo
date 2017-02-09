@@ -1,5 +1,13 @@
+#Overview
+Our application idea is a mobile application on the Android platform for UConn’s Bus System. An app does currently exist, however the app has major flaws that we seek to correct. The main feature of this app will be a route search, which takes some location on campus and a desired destination as inputs and returns the most efficient route using UConn’s busses. The app may have other features as well depending on progression rates, like walking directions. Overall, the app will run more efficiently and crash less than the current one as well. Because we as students at very in-tune are the end-user, we are at a very advantageous position for selecting a development methodology. We are leaning towards using Agile development due to the closeness of our team, however we will decide definitely in the coming week after learning more about different methods in class.  
+
+Currently we have ~30 lines of code written, most of it fetches data from the transportation database. We currently have 10 github commits for basic documentation, data fetching code, and this progress report.
+
+
+#SEMAT
+
 ##Stakeholders
-I think that the stakeholders in this situation are ourselves, since we are the ones getting the grade. We could also call Professor Edgington a stakeholder since he is judging the quality of our project. If the project goes as expected, there is potential for UConn Transportation to be a stakeholder along with the greater UConn community, as they are the ones that would use such an application.
+The stakeholders in this situation are ourselves, since we are the ones getting the grade. We could also call Professor Edgington a stakeholder since he is judging the quality of our project. If the project goes as expected, there is potential for UConn Transportation to be a stakeholder along with the greater UConn community, as they are the ones that would use such an application.
 
 ###Recognized
 - Stakeholder groups identified
