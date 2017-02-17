@@ -26,7 +26,7 @@ def updateRoutes():
     res = requests.get('http://www.uconnshuttle.com/Services/JSONPRelay.svc/GetRoutesForMapWithScheduleWithEncodedLine?method=jQuery1111003305817537385458_1487272463428&ApiKey=8882812681&_=1487272463429')
     return parseJSON(res.text)
 
-def sharedDataUpdaterFactory(updater, key):
+def sharedDataUpdaterFactory(updater, key, interval):
     def thisLoop():
         while True:
             try:
@@ -34,26 +34,24 @@ def sharedDataUpdaterFactory(updater, key):
                 shared_data_lock.acquire()
                 shared_data[key] = tmp
                 shared_data_lock.release()
-            except:
-                #fail silently bad idea?
-                pass
-        sleep(0.5)
+                sleep(interval)
+            except Exception as e:
+                # fail silently bad idea?
+                # print(e)
+                sleep(3)
+    return thisLoop
 
 def rideSystemsLoop():
-    def locationLoop():
-        while True:
-            try:
-                tmp = updateBusLocations()
-                shared_data_lock.acquire()
-                shared_data['locations'] = tmp
-                shared_data_lock.release()
-            except Exception as e:
-                # failing silently perhaps not best
-                print(e)
-            sleep(0.5)
- 
+    locationLoop = sharedDataUpdaterFactory(updateBusLocations, 'locations',
+    0.5)
+    stopLoop = sharedDataUpdaterFactory(updateStopInfo, 'stops', 20)
+    routeLoop = sharedDataUpdaterFactory(updateRoutes, 'routes', 600)
     locationThread = threading.Thread(target=locationLoop)
+    stopThread = threading.Thread(target=stopLoop)
+    routeThread = threading.Thread(target=routeLoop)
     locationThread.start()
+    stopThread.start()
+    routeThread.start()
 
 if __name__ == '__main__':
     stdscr = curses.initscr()
@@ -68,9 +66,9 @@ if __name__ == '__main__':
             for bus in shared_data['locations']:
                 stdscr.addstr("%d\t\t%f\t%f\n" % (bus['VehicleID'], bus['Latitude'],
                 bus['Longitude']))
-        except:
+        except Exception as e:
             # silent fail okay?
-	    pass
+            print(e)
         stdscr.refresh()
         sleep(0.5)
 
