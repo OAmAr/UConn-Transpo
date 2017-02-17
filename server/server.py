@@ -16,8 +16,7 @@ def parseJSON(responseText):
 
 def updateBusLocations():
     res = requests.get('http://www.uconnshuttle.com/Services/JSONPRelay.svc/GetMapVehiclePoints?method=jQuery1111005010178853515934_1485291299254&ApiKey=8882812681&_=1485291299511')
-    responseText = res.text
-    return parseJSON(responseText) 
+    return parseJSON(res.text)
 
 def updateStopInfo():
     res = requests.get('http://www.uconnshuttle.com/Services/JSONPRelay.svc/GetRouteStopArrivals?method=jQuery11110746430026515343_1485295223953&TimesPerStopString=2&ApiKey=8882812681&_=1485295223990')
@@ -44,14 +43,13 @@ def rideSystemsLoop():
     def locationLoop():
         while True:
             try:
-                tmp = updateLocations()
+                tmp = updateBusLocations()
                 shared_data_lock.acquire()
                 shared_data['locations'] = tmp
-                print(tmp)
                 shared_data_lock.release()
-            except:
+            except Exception as e:
                 # failing silently perhaps not best
-                print('updateLocationsFailed')
+                print(e)
             sleep(0.5)
  
     locationThread = threading.Thread(target=locationLoop)
@@ -72,7 +70,7 @@ if __name__ == '__main__':
                 bus['Longitude']))
         except:
             # silent fail okay?
-            print('otherthingfailed')
+	    pass
         stdscr.refresh()
         sleep(0.5)
 
