@@ -27,6 +27,19 @@ def updateRoutes():
     res = requests.get('http://www.uconnshuttle.com/Services/JSONPRelay.svc/GetRoutesForMapWithScheduleWithEncodedLine?method=jQuery1111003305817537385458_1487272463428&ApiKey=8882812681&_=1487272463429')
     return parseJSON(res.text)
 
+def sharedDataUpdaterFactory(updater, key):
+    def thisLoop():
+        while True:
+            try:
+                tmp = updater()
+                shared_data_lock.acquire()
+                shared_data[key] = tmp
+                shared_data_lock.release()
+            except:
+                #fail silently bad idea?
+                pass
+        sleep(0.5)
+
 def rideSystemsLoop():
     def locationLoop():
         while True:
