@@ -54,24 +54,16 @@ def rideSystemsLoop():
     routeThread.start()
 
 if __name__ == '__main__':
-    stdscr = curses.initscr()
-    curses.noecho()
-    stdscr.clear()
+    #stdscr = curses.initscr()
+    #curses.noecho()
+    #stdscr.clear()
 
     RSLoop = threading.Thread(target=rideSystemsLoop)
     RSLoop.start()
-    for i in range(50):
-        stdscr.addstr(0, 0, "VehicleID\tLatitude\tLongitude\n")
-        try:
-            for bus in shared_data['locations']:
-                stdscr.addstr("%d\t\t%f\t%f\n" % (bus['VehicleID'], bus['Latitude'],
-                bus['Longitude']))
-        except Exception as e:
-            # silent fail okay?
-            print(e)
-        stdscr.refresh()
-        sleep(0.5)
+    #stdscr.refresh()
+    sleep(1)
+    print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
 
 #curses.echo()
-curses.endwin()
+#curses.endwin()
 exit()
