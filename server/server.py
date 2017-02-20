@@ -1,5 +1,3 @@
-# network thread prototype
-
 import requests
 import json
 import curses
@@ -63,7 +61,6 @@ if __name__ == '__main__':
     #stdscr.refresh()
     sleep(1)
     print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
-
+    exit()
 #curses.echo()
 #curses.endwin()
-exit()
