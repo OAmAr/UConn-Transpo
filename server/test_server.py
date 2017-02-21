@@ -23,7 +23,6 @@ class TestRideSystems(unittest.TestCase):
                 print(e)
                 sleep(0.5)
         self.assertEqual(True, success)
-        self.assertEqlal(False, True)
 
 if __name__ == '__main__':
     unittest.main()
