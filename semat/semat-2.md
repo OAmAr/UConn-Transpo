@@ -13,7 +13,7 @@ The stakeholders in this situation are ourselves, since we are the ones getting 
 
 ###Recognized
 
-Stakeholder groups identified
+*Stakeholder groups identified
 Key stakeholder groups represented
 Responsibilities defined
 
