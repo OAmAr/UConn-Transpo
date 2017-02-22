@@ -67,7 +67,6 @@ Success criteria clear
 Value of software system understood
 The value of a successful solution established. 
 
-
 ###Action Items
 
 We should seek to quantify the value of our app and better understand how it will impact the UConn community. I think we are all clear, however, that a successful outcome looks like an A on our transcripts as well as helpful to UConn community.
@@ -81,6 +80,7 @@ We should get moving on this...
 Technologies selected
 Decisions on system organization made
 HW platforms identified
+Platorms, technologies, and language selected. 
 
 ###Action Items
 
@@ -96,6 +96,28 @@ Required result clear
 Initiator identified
 Priority clear
 
+###Started
+
+Development work has started 
+Work progress is monitored 
+Work broken down into actionable items with clear definition of done.
+Team members are accepting and progressing work items.
+
+###Under Control
+
+Work going well.
+Unplanned work & re-work under control. 
+Work items completed within estimated time. 
+Measures tracked.
+
+###Principles Established 
+
+Principles and constraints established 
+Principles and constraints commited to.
+Practices and tools agreed to 
+Context team operates in understood. 
+
+
 ###Action Items
 
 We need to better understand our resources and limitations. We've had some grand ideas, but we haven't fully accounted for how much time we are going to put into this project amidst our other classes, activities, etc. Once we have an effort commitment from everyone, we will be prepared to being building.
@@ -106,10 +128,25 @@ We need to better understand our resources and limitations. We've had some grand
 
 Tool needs agreed
 Practice & tool constraints known
+Capability gaps analyzed and understood.
+
+###In Use
+
+Some members of the team are using the way of working.
+Use of practices and tools reguraly inspected. 
+Practices and tools being adapted and supported by the team.
+Procedures in place to handle feedback. 
+
+###In Place 
+
+All members of the team are using the way of working.
+All members have access to practices and tools to do their work. 
+Whole team in inspection and adaptataion of way of working. 
+
 
 ###Action Items
 
-We need to establish which software development method we will use (agile, waterfall, etc).
+For our software developent method, we are using the mixture of agile and waterfall methods. 
 
 ##Team
 
@@ -125,6 +162,18 @@ Enough members recruited
 Roles understood
 Members introduced
 Communication mechanisms defined
+Members know their responsibilities. 
+
+###Callaborating
+
+Members working as one unit.
+Communaction is open and honest.
+Memebers focused on team mission.
+
+###Performing
+
+Team working effeciently and effectively
+Adapt to changing context.
 
 ###Action Items
 
@@ -143,7 +192,9 @@ Opportunity clear
 System purpose agreed
 System success clear
 Shared solution understanding exists
-Constraints identified and considered
+Mechanisms for handling requirements are agreed. 
+Constraints and assumptions identified. 
+
 
 ###Action Items
 
