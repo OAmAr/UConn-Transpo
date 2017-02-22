@@ -4,10 +4,10 @@ Our application idea is a mobile application on the Android platform for UConnâ€
 
 Currently we have ~5,348 lines of code written, most of it fetches data from the transportation database. We currently have 30 github commits for basic documentation, data fetching code, and this progress report.
 
-***SEMAT
+#SEMAT
 
 
-<Stakeholders>
+##Stakeholders
 
 The stakeholders in this situation are ourselves, since we are the ones getting the grade. We could also call Professor Edgington a stakeholder since he is judging the quality of our project. If the project goes as expected, there is potential for UConn Transportation to be a stakeholder along with the greater UConn community, as they are the ones that would use such an application.
 
@@ -64,6 +64,10 @@ At least one solution proposed
 Value Established
 
 Success criteria clear
+Value of software system understood
+The value of a successful solution established. 
+
+
 Action Items
 
 We should seek to quantify the value of our app and better understand how it will impact the UConn community. I think we are all clear, however, that a successful outcome looks like an A on our transcripts as well as helpful to UConn community.
