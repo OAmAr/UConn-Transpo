@@ -12,7 +12,6 @@ Currently we have ~5,348 lines of code written, most of it fetches data from the
 The stakeholders in this situation are ourselves, since we are the ones getting the grade. We could also call Professor Edgington a stakeholder since he is judging the quality of our project. If the project goes as expected, there is potential for UConn Transportation to be a stakeholder along with the greater UConn community, as they are the ones that would use such an application.
 
 ######Recognized
-
 Stakeholder groups identified
 Key stakeholder groups represented
 Responsibilities defined
