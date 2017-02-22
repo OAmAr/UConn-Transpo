@@ -146,7 +146,8 @@ Whole team in inspection and adaptataion of way of working.
 
 ###Action Items
 
-For our software developent method, we are using the mixture of agile and waterfall methods. 
+For our software developent method, we are using the mixture of agile and 
+waterfall methods because this methods would help us have a strong documentation so, in future we can work on this project to make it stable and fix bugs.  
 
 ##Team
 
