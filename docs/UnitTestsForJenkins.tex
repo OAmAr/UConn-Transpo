@@ -1,0 +1,35 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+
+\begin{document}
+\section*{Jenkins}
+The automated build/test server we are using is called Jenkins. You can check it out at \href{https://jenkins.io/}{https://jenkins.io/} if you are interested. \vspace{1em}
+
+As of now (Feb 20), Jenkins is configured to pull down the latest changes from github and run all Python unit tests every hour. Once we have an Android studio project I can also have it periodically build the app and test the interface using the Android emulator. That's for later, though. 
+
+\subsection*{Writing Python Tests for Jenkins}
+I've configured Jenkins to run tests using the same \texttt{unittest} framework that we used in CSE 2050. If you want a refresher, your test files should look something like \href{https://docs.python.org/3/library/unittest.html\#basic-example}{this}. \vspace{1em}
+
+\noindent Tests are run by executing
+\begin{verbatim}
+python3 -m unittest discover
+\end{verbatim}
+at the top level directory of the git repository. To make sure your tests are discoverable, I've found that adding an \texttt{\_\_init\_\_.py} file in the subdirectory containing your tests helps (it can be an empty file it just has to be named that). You also have to make imports in the test file with respect to the top level directory of the project, so for example to import search.py from the subdirectory named search you would write,
+\begin{verbatim}
+import search.search
+\end{verbatim}
+The first "search" is the subdirectory and the second one is the name of the file. Also, be sure to name your test file something that \texttt{unittest} will recognize as a test file, that is, it should match the pattern \begin{verbatim}
+test*.py
+\end{verbatim}
+\end{document}

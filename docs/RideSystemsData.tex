@@ -1,0 +1,115 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+
+\begin{document}
+\noindent Access to bus data is provided through a dictionary called \texttt{shared\_data}. \vspace{1em}
+
+There are three keys to \texttt{shared\_data}: \texttt{shared\_data['locations']}, \texttt{shared\_data['routes']}, and \texttt{shared\_data['stops']}. These hold data on bus locations, bus routes, and bus stops, respectively. The JSON formats are defined below. 
+
+\begin{Verbatim}[frame=single]
+# for each bus
+[
+	float "GroundSpeed" # mph
+	int "Heading" # degrees
+	bool "IsDelayed"
+	bool "IsOnRoute"
+	float "Latitude"	
+	float "Longitude"
+	string "Name"
+	int "RouteId"
+	int "Seconds"
+	string "TimeStamp" # javascript date
+	int "VehicleID"
+]
+\end{Verbatim}
+\begin{Verbatim}[frame=single]
+# for each route
+[
+    string "Description" # e.g. "Blue", "Red", etc.
+    int "ETATypeID"
+    string "EncodedPolyline" # no idea how this works
+    bool "HideRouteLine"
+    string "InfoText" # usually empty
+    bool "IsCheckLineOnlyOnMap"
+    bool "IsCheckedOnMap"
+    bool "IsVisibleOnMap"
+    "Landmarks": [] # usually empty
+    float "MapLatitude"
+    string "MapLineColor" # html hex color, e.g. "#0000FF" 
+    float "MapLongitude"
+    int "MapZoom"
+    int "Order"
+    int "RouteID"
+    bool "ShowPolygon"
+    bool "ShowRouteArrows"
+    string "StopTimesPDFLink" # all of these links are broken
+    string "TextingKey" # usually empty
+    bool "UseScheduleTripsInPassengerCounter"
+    "Stops": [
+      # for each stop
+        int "AddressID"
+        string "City" # not always accurate
+        float "Latitude"
+        string "Line1"
+        string "Line2" # usually empty
+        float "Longitude"
+        string "State" # always equal to "CT"
+        string "Zip"
+        string "Description"
+        int "Heading"
+        "MapPoints": [] # usually empty
+        int "MaxZoomLevel"
+        int "Order"
+        string "RouteDescription" # usually empty
+        int "RouteID"
+        int "RouteStopID"
+        int "SecondsAtStop"
+        int "SecondsToNextStop"
+        bool "ShowDefaultedOnMap"
+        bool "ShowEstimatesOnMap"
+        string "SignVerbiage"
+        string "TextingKey"
+    ]
+]
+\end{Verbatim}
+\begin{Verbatim}[frame=single]
+# for each stop
+[
+    int "RouteID"
+    int "RouteStopID"
+    "ScheduledTimes": [
+        # list has a maximum length of two
+        {
+            string "ArrivalTimeUTC" # javascript date
+            int "AssignedVehicleId"
+            string "DepartureTimeUTC" # javascript date
+        }
+    ]
+    "VehicleEstimates": [
+        # likewise this list also has maximum length of two      
+        {
+            bool "OnRoute"
+            int "SecondsToStop"
+            int "VehicleID"
+        }
+    ]
+]
+\end{Verbatim}
+
+If you want to look at some example data, here are links to the \href{http://www.uconnshuttle.com/Services/JSONPRelay.sv
+c/GetMapVehiclePoints?method=jQuery1111005010178853515934_1485291299254&Ap
+iKey=8882812681&_=1485291299511}{locations}, \href{http://www.uconnshuttle.com/Services/JSONPRelay.svc/GetRoutesForMapWithScheduleWithEncodedLine?method=jQuery1111003305817537385458_1487272463428&ApiKey=8882812681&_=1487272463429}{routes}, and \href{http://www.uconnshuttle.com/Services/JSONPRelay.sv
+c/GetRouteStopArrivals?method=jQuery11110746430026515343_1485295223953&Tim
+esPerStopString=2&ApiKey=8882812681&_=1485295223990}{stops}. Note that if you visit these pages while there are no buses running you will not get any data. 
+\end{document}

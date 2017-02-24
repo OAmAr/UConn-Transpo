@@ -1,5 +1,3 @@
-# network thread prototype
-
 import requests
 import json
 import curses
@@ -54,9 +52,9 @@ def rideSystemsLoop():
     routeThread.start()
 
 if __name__ == '__main__':
-    stdscr = curses.initscr()
-    curses.noecho()
-    stdscr.clear()
+    #stdscr = curses.initscr()
+    #curses.noecho()
+    #stdscr.clear()
 
     RSLoop = threading.Thread(target=rideSystemsLoop)
     RSLoop.start()
@@ -112,8 +110,11 @@ if __name__ == '__main__':
     #     print(line['Description'])
 
 
-
-
-
 curses.endwin()
 exit()
+    #stdscr.refresh()
+# sleep(1)
+# print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
+# exit()
+#curses.echo()
+#curses.endwin()
