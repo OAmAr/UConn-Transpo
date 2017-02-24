@@ -60,18 +60,60 @@ if __name__ == '__main__':
 
     RSLoop = threading.Thread(target=rideSystemsLoop)
     RSLoop.start()
-    for i in range(50):
-        stdscr.addstr(0, 0, "VehicleID\tLatitude\tLongitude\n")
-        try:
-            for bus in shared_data['locations']:
-                stdscr.addstr("%d\t\t%f\t%f\n" % (bus['VehicleID'], bus['Latitude'],
-                bus['Longitude']))
-        except Exception as e:
-            # silent fail okay?
-            print(e)
-        stdscr.refresh()
-        sleep(0.5)
 
-#curses.echo()
+    sleep(4)
+
+    # for line in shared_data['routes']:
+    #     print(line['Description'])
+    # blue = 0
+    # red = 1
+    # green = 2
+    # yellow = 3
+    # orange = 4
+
+    def getStops(busNumber):
+        l = len(shared_data['routes'][busNumber]['Stops'])
+        stops = []
+        for i in range(l):
+            stops.append(shared_data['routes'][busNumber]['Stops'][i]['Description'])
+        return(stops)
+
+    # print(getStops(0))
+
+    def getTime(busNumber,start,end):
+        l = len(shared_data['routes'][busNumber]['Stops'])
+        time = 0
+        startCounting = False
+
+        for stops in range(l):
+            current = shared_data['routes'][busNumber]['Stops'][stops]
+            if current['Description'] == start:
+                startCounting = True
+            if startCounting and current['Description'] == end:
+                return time
+            if startCounting:
+                time = time + current['SecondsToNextStop']
+
+
+
+    # print(shared_data['routes'][0]['Stops'][0]['Description'])
+    # print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
+    #
+    # print(shared_data['routes'][0]['Stops'][1]['Description'])
+    # print(shared_data['routes'][0]['Stops'][1]['SecondsToNextStop'])
+
+    print(getTime(0,'North Garage','Hilltop Appartments'))
+    # print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
+    # print(shared_data['routes'][0]['Stops'][3]['Description'])
+    # print(shared_data['routes'][0]['Stops'][4]['Description'])
+    # print(shared_data['routes'][0]['Stops'][5]['Description'])
+    #
+    # for line in shared_data['routes']:
+    #     print(line['Description'])
+
+
+
+
+
 curses.endwin()
 exit()
