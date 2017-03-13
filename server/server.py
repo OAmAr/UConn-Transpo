@@ -1,6 +1,5 @@
 import requests
 import json
-import curses
 import threading
 from time import sleep
 
@@ -119,8 +118,6 @@ if __name__ == '__main__':
 
 
 
-curses.endwin()
-exit()
     #stdscr.refresh()
 # sleep(1)
 # print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
