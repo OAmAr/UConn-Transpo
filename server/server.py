@@ -97,13 +97,16 @@ if __name__ == '__main__':
 
 
 
-    # print(shared_data['routes'][0]['Stops'][0]['Description'])
+    print(shared_data['routes'][0]['Stops'][0]['Description'])
     # print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
     #
     # print(shared_data['routes'][0]['Stops'][1]['Description'])
     # print(shared_data['routes'][0]['Stops'][1]['SecondsToNextStop'])
 
-    print(getTime(5,'Clubhouse Apartments','MSB'))
+    # print(getTime(5,'Clubhouse Apartments','MSB'))
+    for line in shared_data['routes']:
+        print(line['Description'])
+
 
     # the issue is the search is only linear, it needs to be circular
 
