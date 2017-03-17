@@ -42,6 +42,10 @@ def getTime(busNumber,start,end):
     return None
 
 def search(current,destination):
+    # This functions takes the two points of interest as strings
+    # and returns a list of tuples with potential options to get from current
+    # to destination. The tuples are pairs of bus # and time it takes.
+    
     busNumbers = [i for i in range(6)]
     results = []
     for i in busNumbers:
