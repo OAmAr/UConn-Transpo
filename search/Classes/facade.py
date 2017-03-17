@@ -1,12 +1,12 @@
-import sys
-sys.path.insert(0, '../server')
-from server import *
+#import sys
+#sys.chdir('../server')
+#from server import *
 
-RSLoop = threading.Thread(target=rideSystemsLoop)
-RSLoop.start()
-sleep(4)
+#RSLoop = threading.Thread(target=rideSystemsLoop)
+#RSLoop.start()
+#sleep(4)
 
-print(shared_data['routes'][0]['MapLatitude']) #[1])
+#print(shared_data['routes'][0]['MapLatitude']) #[1])
 
 
 
