@@ -16,15 +16,16 @@ class Bus:
 
     def getTime(self,current,destination):
         # returns time it will take for this bus to get from current to destination
-        pass
-
+        return 0
+    def __str__(self):
+        return self.color
 
 red = Bus('red',[1,2])
 blue = Bus('blue',[1,4,5])
 yellow = Bus('yellow',[3,7])
 green = Bus('green',[1,5,8])
 
-routes = {red:red.getStops(), blue:blue.getStops(), yellow:yellow.getStops(), green:green.getStops()}
+stops = {red:red.getStops(), blue:blue.getStops(), yellow:yellow.getStops(), green:green.getStops()}
 
 print(stops[red])
 
@@ -32,4 +33,5 @@ def search(current,destination):
     for i in stops:
         if current in stops[i] and destination in stops[i]:
             # add these busses to potential options
-            print(stops[keys] +   ': ' + i.getTime(current,destination))
+            print(str(i) +   ': ' + str(i.getTime(current,destination)))
+			#code didnt run before, variables didnt agree etc. Edited a bit to get something workign
