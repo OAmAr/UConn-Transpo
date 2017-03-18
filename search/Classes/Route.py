@@ -1,7 +1,7 @@
 from data import shared_data
 from data import bus_data as route_data
 '''todo
-	finish populate busses
+	DONE finish populate busses
 	tests
 '''
 class Route:
@@ -20,6 +20,9 @@ class Route:
 		temp = []
 		locs = shared_data['locations']
 		#go through locations, assign busses with 
+		for bus in locs:
+			if bus["RouteID"] == self.getID():
+				self._buses.append(bus["VehicleID"])
 		self._buses=temp
 	
 	def _populateStops()
