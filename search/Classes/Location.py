@@ -3,14 +3,14 @@ class Location:
 	def __init__(self, x=None, y=None):
 		self._coords = [x,y]
 	def getLocation(self):
-		return (x,y)
+		return [self.getX(),self.getY()]
 	def setX(self,x):
 		self._coords[0]=x
 	def setY(self,y):
 		self._coords[1]=y
-	def getX(self,x):
+	def getX(self):
 		return self._coords[0]
-	def getY(self,y):
+	def getY(self):
 		return self._coords[1]
 	def resetCoords(self, x, y):
 		self.setX(x)
