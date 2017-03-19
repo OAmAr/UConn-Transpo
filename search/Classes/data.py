@@ -13,3 +13,4 @@ busdata = BusData(shared_data)
 #importing this should give access to shared_data)
 if __name__ == '__main__':
 	print(shared_data['routes'][0])
+	#print(shared_data)
