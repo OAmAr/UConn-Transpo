@@ -7,8 +7,13 @@ class Stop(Location):
 		self._name = name
 		self._routes = set()
 		self._setRoutes()
-	#todo: set routes
-	
 
+	def _SetRoutes(self):
+		for route in shared_data['routes']:
+			if self.getName() in route["Stops"]:
+				self._routes.add(route["Description"])
+
+	def getName(self):
+		return str(self._name)
 	def getRoutes(self):
 		return self._routes

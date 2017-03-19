@@ -2,17 +2,20 @@ import unittest
 from Location import Location
 
 class testLoc(unittest.TestCase):
-	def test1(self):
+	def testNoParInit(self):
 		L = Location()
 		self.assertEqual(L.getLocation(), [None,None])
 	
-	def test2(self):
+	def testgetBoth(self):
 		L = Location(8,7)
 		self.assertEqual(L.getLocation(), [8,7])
+	
+	def testGetSingle(self):
+		L = Location(8,7)
 		self.assertEqual(L.getX(), 8)
 		self.assertEqual(L.getY(), 7)
 	
-	def test3(self):
+	def testSetSingle(self):
 		L = Location()
 		self.assertEqual(L.getLocation(), [None,None])
 		L.setX(8)
@@ -21,7 +24,7 @@ class testLoc(unittest.TestCase):
 		self.assertEqual(L.getX(), 8)
 		self.assertEqual(L.getY(), 7)
 	
-	def test4(self):
+	def testReset(self):
 		L = Location()
 		self.assertEqual(L.getLocation(), [None,None])
 		L.setX(8)

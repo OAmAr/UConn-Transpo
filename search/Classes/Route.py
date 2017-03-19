@@ -1,9 +1,5 @@
 from data import shared_data
 from data import bus_data as route_data
-'''todo
-	DONE finish populate busses
-	tests
-'''
 class Route:
 	def __init__(self, color,index = None):
 		self._color = color #color must be the name of a route, caps must match
@@ -16,10 +12,9 @@ class Route:
 		self._populateBuses()
 		self._populateStops()
 
-	def _populateBuses(self): #incomplete
+	def _populateBuses(self): 
 		temp = []
 		locs = shared_data['locations']
-		#go through locations, assign busses with 
 		for bus in locs:
 			if bus["RouteID"] == self.getID():
 				self._buses.append(bus["VehicleID"])
