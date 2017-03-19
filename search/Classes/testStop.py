@@ -1,7 +1,7 @@
 import unittest
 from Stop import Stop
 
-class testStop(unittest.TestClass):
+class testStop(unittest.TestCase):
 	
 	def testStopLoc(self):
 		s = Stop(0,3,"ThisIsNotAName")
@@ -11,11 +11,13 @@ class testStop(unittest.TestClass):
 		self.assertEqual("ThisIsNotAName", s.getName())
 	
 	def testStopRoutes(self):
-		s = Stop(0,3, "This is a Name")
-		self.assertEqual(s.getRoutes(), set(["Some", "colors"]))
-
+		s = Stop(0,3, "North Garage")
+		self.assertEqual(s.getRoutes(), set(["Green", "Silver", "Purple", "Blue", "Yellow"]))
+	def testStops2(self):
+		s = Stop(0,3, "Silver Falls")
+		self.assertEqual(s.getRoutes(), set(["Purple"]))
 	def testStopNoRoutes(self):
-		s = stop(0,3 " this is not a name")
+		s = Stop(0,3, " this is not a name")
 		self.assertEqual(s.getRoutes(), set())
 
 
