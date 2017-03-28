@@ -1,12 +1,12 @@
-import sys
-sys.path.insert(0, '../server')
-from server import *
+#import sys
+#sys.chdir('../server')
+#from server import *
 
-RSLoop = threading.Thread(target=rideSystemsLoop)
-RSLoop.start()
-sleep(4)
+#RSLoop = threading.Thread(target=rideSystemsLoop)
+#RSLoop.start()
+#sleep(4)
 
-print(shared_data['routes'][0]['MapLatitude']) #[1])
+#print(shared_data['routes'][0]['MapLatitude']) #[1])
 
 
 
@@ -30,12 +30,3 @@ class BusData:
 
     def getLatitude(self,bus):
         return bus['MapLatitude']
-
-<<<<<<< HEAD
-a = BusData(shared_data)
-print(a.getBus('Red'))
-=======
-a=BusData(shared_data)
-print(a.getBus("Blue"))
-print(a.getLatitude(a.getBus("Blue")))
->>>>>>> 5a00e69972b663e5d09b22e284da9a125f95b7c6
