@@ -62,7 +62,7 @@ A solution has been outlined and indications are solution can be developed and d
 
 ## Software System
 
-We should get moving on this...
+We are heading to our finishing point, just need to work on the quality and realiability aspects.
 
 ### Architecture Selected
 
@@ -71,6 +71,12 @@ Technologies selected Decisions on system organization made HW platforms identif
 ### Action Items
 
 We really need to work through the first card and the second soon. Architectures need to be agreed on and we need to start building up proof of concept demonstrations of what we will eventually be trying to accomplish.
+
+### Demonstrable 
+
+Key architecture characteristics demonstrated. Relevant stakeholders agree architecture is appropriate. 
+Critical interface and system configurations exercised.
+
 
 ## Work
 
@@ -100,7 +106,7 @@ We need to better understand our resources and limitations. We've had some grand
 
 ### Principles Established
 
-Tool needs agreed Practice & tool constraints known Capability gaps analyzed and understood.
+Tool needs agreed Practice & tool constraints known Capability gaps analyzed and understood. Selected practices and tools integrated.
 
 ### In Use
 
@@ -110,6 +116,11 @@ Some members of the team are using the way of working. Use of practices and tool
 
 All members of the team are using the way of working. All members have access to practices and tools to do their work. Whole team in inspection and adaptataion of way of working.
 
+### Working Well
+
+Way of working is working well for the team but, needed some commitments towards task's deadlines. 
+Team members are making progress as planned. Tools also support the way of working. 
+
 ### Action Items
 
 For our software developent method, we are using the mixture of agile and waterfall methods because this methods would help us have a strong documentation so, in future we can work on this project to make it stable and fix bugs.
@@ -118,7 +129,8 @@ For our software developent method, we are using the mixture of agile and waterf
 
 ### Seeded
 
-Mission defined Constraints known and defined Responsibilities outlined
+Mission defined Constraints known and defined Responsibilities outlined. 
+Team knows how to grow to achieve mission. Required competencies are identified and team size is determined.
 
 ### Formed
 
@@ -130,11 +142,16 @@ Members working as one unit. Communaction is open and honest. Memebers focused o
 
 ### Performing
 
-Team working effeciently and effectively Adapt to changing context.
+Team working effeciently and effectively Adapt to changing context. Waste is continually eliminated.
 
 ### Action Items
 
 We need to decide when we can meet routinely to discuss progress outside of class.
+
+### Initiated 
+
+Work initiator known and work constraints are clear. Priority of work is clear. 
+
 
 ## Requirements
 
