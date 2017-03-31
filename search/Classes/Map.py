@@ -2,10 +2,10 @@ from data  import shared_data
 from Stop  import Stop
 from Route import Route
 #issues:
-	#getTime only tells how much time you should spend in bus, not how long you'd have to wait for it to get to you/when it will get 
+	#getTime only tells how much time you should spend in bus, not how long you'd have to wait for it to get to you/when it will get
 	#issue is its working on routes and not the busses on the routes
-	
-class Map:	 
+
+class Map:
 	def __init__(self):
 		self._stops  = dict() #name and Stop
 		self._routes = dict() #name and Route
@@ -13,16 +13,18 @@ class Map:
 	def getDirections(self, start, end):
 		#given a start and end gives routes that dict of possible route and time it takes
 		possible = self.possibleRoutes(start,end)
-		times = dict(route:self.getTime(start,end,route) for route in possible)
-		return times 
-		
+		times = {route:self.getTime(start,end,route) for route in possible}
+		return times
+
 	def getTime(self, start,end, route):
+		# i think this will run forever if stops are not in a route
+
 		started = False
 		done    = False
 		l       = len(stops)
 		i       = time = 0
 		stops   = self._routes[route]["Stops"]
-		
+
 		while not done:
 			if stops[i] == start:
 				started == True
@@ -37,7 +39,7 @@ class Map:
 				i=0
 
 		return time
-	
+
 
 
 	def possibleRoutes(self, start,end):
@@ -49,24 +51,10 @@ class Map:
 			if start in self._routes[route].getStops() and end in self._routes[route].getStops():
 				possible.append(route)
 		return possible
-	
-			
+
+
 	def getStops(self):
 		return self._stops
 
 	def getRoutes(self):
 		return self._routes
-		
-
-
-print(search('Student Union','North Garage'))
-print(search('Towers','Student Union'))
-print(search('Towers','I Lot'))
-# print(search('Student Union','North Garage'))
-# print(shared_data['routes'][0]['Stops'][0]['Description'])
-# print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
-#
-# print(shared_data['routes'][0]['Stops'][1]['Description'])
-# print(shared_data['routes'][0]['Stops'][1]['SecondsToNextStop'])
-
-# print(getTime(5,'Clubhouse partments','QRS'))

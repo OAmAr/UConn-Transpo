@@ -1,5 +1,5 @@
 from data import shared_data
-from data import bus_data as route_data
+from data import busdata as route_data
 class Route:
 	def __init__(self, color,index = None):
 		self._color = color #color must be the name of a route, caps must match
@@ -12,15 +12,15 @@ class Route:
 		self._populateBuses()
 		self._populateStops()
 
-	def _populateBuses(self): 
+	def _populateBuses(self):
 		temp = []
 		locs = shared_data['locations']
 		for bus in locs:
 			if bus["RouteID"] == self.getID():
 				self._buses.append(bus["VehicleID"])
 		self._buses=temp
-	
-	def _populateStops()
+
+	def _populateStops(self):
 		for i in range(self._data["Stops"]):
 			stop = self._data["Stops"][i]
 			self._stops[stop]=i
