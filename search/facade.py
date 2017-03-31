@@ -31,6 +31,11 @@ class BusData:
     def getLatitude(self,bus):
         return bus['MapLatitude']
 
+<<<<<<< HEAD
+a = BusData(shared_data)
+print(a.getBus('Red'))
+=======
 a=BusData(shared_data)
 print(a.getBus("Blue"))
 print(a.getLatitude(a.getBus("Blue")))
+>>>>>>> 5a00e69972b663e5d09b22e284da9a125f95b7c6
