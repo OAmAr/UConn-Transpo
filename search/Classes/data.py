@@ -1,7 +1,13 @@
 import sys
-from facade import *
-sys.path.insert(0,'../../server')
-from server import *
+try:
+    from search.Classes.facade import *
+except ImportError:
+    from facade import *
+#sys.path.insert(0,'../../server')
+try:
+    from search.Classes.server import *
+except ImportError:
+    from server import *
 
 RSLoop = threading.Thread(target=rideSystemsLoop)
 RSLoop.start()

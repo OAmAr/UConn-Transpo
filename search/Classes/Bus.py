@@ -1,4 +1,7 @@
-from data import shared_data
+try:
+    from search.Classes.data import shared_data
+except ImportError:
+    from data import shared_data
 #figure out how bus figures out which stop it is at, figure out how bus data is supposed to work, figure out how bus number works
 #add timetostop, nextstop,getlocation
 class Bus:

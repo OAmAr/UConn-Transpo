@@ -1,5 +1,8 @@
 import unittest
-from Location import Location
+try:
+    from search.Classes.Location import Location
+except ImportError:
+    from Location import Location
 
 class testLoc(unittest.TestCase):
 	def testNoParInit(self):
