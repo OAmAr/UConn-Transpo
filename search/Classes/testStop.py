@@ -1,6 +1,9 @@
 import unittest
-from Stop import Stop
-
+try:
+    from search.Classes.Stop import Stop
+except ImportError:
+    from Stop import Stop
+print("testing stop")
 class testStop(unittest.TestCase):
 	
 	def testStopLoc(self):

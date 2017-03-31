@@ -1,6 +1,9 @@
 import sys
-sys.path.insert(0, '../server')
-from server import *
+#sys.path.insert(0, '../server')
+try:
+    from search.Classes.server import *
+except ImportError:
+    from server import *
 
 RSLoop = threading.Thread(target=rideSystemsLoop)
 RSLoop.start()

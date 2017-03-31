@@ -1,15 +1,3 @@
-#import sys
-#sys.chdir('../server')
-#from server import *
-
-#RSLoop = threading.Thread(target=rideSystemsLoop)
-#RSLoop.start()
-#sleep(4)
-
-#print(shared_data['routes'][0]['MapLatitude']) #[1])
-
-
-
 class BusData:
     def __init__(self,inputDictionary=None):
         if inputDictionary:
