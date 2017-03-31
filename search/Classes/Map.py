@@ -36,7 +36,7 @@ class Map:
 		i       = time = 0
 		stops   = self._routes[route]["Stops"]
 
-		while not done:
+		while not done and i<l*2:
 			if stops[i] == start:
 				started == True
 			elif started and stops[i] == end:
