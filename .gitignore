@@ -1,0 +1,6 @@
+*.swp
+*.pyc
+*.aux
+*.log
+*.synctex.gz
+*.out
