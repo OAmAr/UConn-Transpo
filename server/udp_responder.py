@@ -1,4 +1,5 @@
 import socketserver
+import struct
 
 class BusUDPHandler(socketserver.BaseRequestHandler):
     def setup(self):
@@ -24,17 +25,13 @@ class BusUDPHandler(socketserver.BaseRequestHandler):
         #data = int(data)
         socket = self.request[1]
         print("{} wrote:".format(self.client_address[0]))
-        print(int(data[-1]))
         try:
-            socket.sendto(b'1', self.client_address)
+            #socket.sendto(b'1', self.client_address)
             for bus in self.shared_data['locations']:
-                print("in loop")
                 if bus['VehicleID'] == int(data[-1]):
                     socket.sendto(self.buildPacket(bus), self.client_address)
-                else:
-                    print('failed')
-        except:
-            print("User reqested VehicleID that does not exist")
+        except Exception as e:
+            print(e)
 
     def setSharedDataSource(self, shared_data):
         self.shared_data = shared_data
