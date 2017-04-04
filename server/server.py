@@ -1,7 +1,9 @@
 import requests
 import json
 import threading
+import socketserver
 from time import sleep
+from udp_responder import BusUDPHandler, BusUDPServer
 
 shared_data = dict()
 shared_data_lock = threading.Lock()
@@ -57,6 +59,9 @@ if __name__ == '__main__':
 
     RSLoop = threading.Thread(target=rideSystemsLoop)
     RSLoop.start()
+    udpsrv = BusUDPServer(("localhost", 6269), BusUDPHandler, shared_data)
+    udpsrv.serve_forever()
+
 
     sleep(4)
 

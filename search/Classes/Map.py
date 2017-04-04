@@ -9,14 +9,11 @@ except ImportError:
 #issues:
 	#getTime only tells how much time you should spend in bus, not how long you'd have to wait for it to get to you/when it will get
 	#issue is its working on routes and not the busses on the routes
-
-
-
 #todo:
 	#add stops
 	#create map from shared_data maybe:
 class Map:
-	def __init__(self):
+        def __init__(self):
 		self._stops  = dict() #name and Stop
 		self._routes = dict() #name and Route
 
@@ -28,8 +25,6 @@ class Map:
 
 
 	def getTime(self, start,end, route):
-		# i think this will run forever if stops are not in a route
-
 		started = False
 		done    = False
 		l       = len(stops)
@@ -67,6 +62,9 @@ class Map:
 				possible.append(route)
 		return possible
 
+        def update(self):
+            for route in self.getRoutes():
+                route.update()
 
 	def getStops(self):
 		return self._stops

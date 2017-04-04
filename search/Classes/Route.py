@@ -15,13 +15,15 @@ class Route:
 			self._index = index
 		self._populateBuses()
 		self._populateStops()
-
+        def update(self):
+            for bus in self.getBuses():
+                bus.updated()
 	def _populateBuses(self):
 		temp = []
 		locs = shared_data['locations']
 		for bus in locs:
 			if bus["RouteID"] == self.getID():
-				self._buses.append(bus["VehicleID"])
+				self._buses.append(bus["VehicleID"],self.getColor())
 		self._buses=temp
 
 	def _populateStops(self):
