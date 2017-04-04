@@ -24,37 +24,43 @@ class Map:
         return times
 
 
-    def getTime(self, start,end, route):
-	# i think this will run forever if stops are not in a route
-        started = False
-        done    = False
-        l       = len(stops)
-        i       = time = 0
-        stops   = self._routes[route]["Stops"]
-    
-        while not done and i<l*2:
-            if stops[i] == start:
-                started == True
-            elif started and stops[i] == end:
-                done    = True
-                started = False
-            if started:
-                time+= stops[i]["TimeToNextStop"]
-                time+= stop[i]["TimeAtStop"]
-                i+=1
-            if i >= l:
-                i=0
-        return time
+	def getTime(self, start,end, route):
+		started = False
+		done    = False
+		l       = len(stops)
+		i       = time = 0
+		stops   = self._routes[route]["Stops"]
 
-        def possibleRoutes(self, start,end):
-            if not start in self._stops or not end in self._stops:
-                raise RuntimeError("start or end not in stops")
-                return
-            possible = []
-            for route in self._routes:
-                if start in self._routes[route].getStops() and end in self._routes[route].getStops():
-                    possible.append(route)
-            return possible
+		while not done and i<l*2:
+			if stops[i] == start:
+				started == True
+			elif started and stops[i] == end:
+				done    = True
+				started = False
+			if started:
+				time+= stops[i]["TimeToNextStop"]
+				time+= stop[i]["TimeAtStop"]
+			i+=1
+			if i >= l:
+				i=0
+		return time
+
+		def getClosestStop(self):
+			pass
+
+		def getTimeToClosestStop(self):
+			pass
+
+
+	def possibleRoutes(self, start,end):
+		if not start in self._stops or not end in self._stops:
+			raise RuntimeError("start or end not in stops")
+			return
+		possible = []
+		for route in self._routes:
+			if start in self._routes[route].getStops() and end in self._routes[route].getStops():
+				possible.append(route)
+		return possible
 
         def update(self):
             for route in self.getRoutes():

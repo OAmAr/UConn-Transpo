@@ -15,6 +15,5 @@ class testLoc(unittest.TestCase):
 		self.assertEqual(L.getLocation(), [8,7])
 
 
-
 if __name__ == "__main__":
 	unittest.main()
