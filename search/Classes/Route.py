@@ -1,4 +1,3 @@
-
 try:
     from search.Classes.data import shared_data
     from search.Classes.data import bus_data as route_data

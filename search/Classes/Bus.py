@@ -9,9 +9,10 @@ class Bus:
 		 self._color  = color
 		 self._number = number
 		 self._data   = BusData(shared_data).getBus(self.getColor())
+		 self._currentLocation = 
 	def getColor():
 		return self._color
 	def getNumber():
 		return self._number
 
-
+	def timeToStop(self,startStop):

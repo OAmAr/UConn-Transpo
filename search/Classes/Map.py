@@ -48,9 +48,13 @@ class Map:
 			i+=1
 			if i >= l:
 				i=0
-
 		return time
 
+		def getClosestStop(self):
+			pass
+
+		def getTimeToClosestStop(self):
+			pass
 
 
 	def possibleRoutes(self, start,end):
