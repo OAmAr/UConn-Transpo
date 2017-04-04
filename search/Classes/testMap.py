@@ -1,5 +1,8 @@
 import unittest
-from Map import Map
+try:
+    from Map import Map
+except ImportError:
+    from search.Classes.Map import Map
 
 class testLoc(unittest.TestCase):
 	def testNonrealStop(self):
