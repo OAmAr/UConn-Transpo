@@ -15,14 +15,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ZoomControls;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -44,6 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Double myLongitude = null;
     private GoogleApiClient googleApiClient;
     private LocationRequest locationRequest;
+    private TextView get_places;
     protected static final String TAG = "MapsActivity";
 
 
@@ -114,6 +120,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
+
     }
 
 
@@ -143,22 +150,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // mMap.addMarker(new MarkerOptions().position(latLng).title("UConn Storrs, CT"));
         //float zoomLevel = 16.0;
-       // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
+        // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
+
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            mMap.setMyLocationEnabled(true);
-        } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
+         // TODO: Consider calling
+         //    ActivityCompat#requestPermissions
+         // here to request the missing permissions, and then overriding
+         //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+         //                                          int[] grantResults)
+         // to handle the case where the user grants the permission. See the documentation
+         // for ActivityCompat#requestPermissions for more details.
+         mMap.setMyLocationEnabled(true);
+         }
+         else {
+         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+         requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
+         }
+         }
+
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment) //This is search suggestions.
+                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+                Log.i(TAG, "Place: " + place.getName());
             }
-        }
+
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: " + status);
+            }
+
+        });
 
 
     }
@@ -202,7 +229,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-Log.i(TAG, "Connection Failed: ConnectionResult.getErrorCode() = " + connectionResult.getErrorMessage());
+        Log.i(TAG, "Connection Failed: ConnectionResult.getErrorCode() = " + connectionResult.getErrorMessage());
     }
 
     @Override // Getting my Location and Latitude
@@ -221,7 +248,7 @@ Log.i(TAG, "Connection Failed: ConnectionResult.getErrorCode() = " + connectionR
     protected void onPause() {
         super.onPause();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-        LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
+            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
     }
 
     @Override //The activity will go in the background.
@@ -239,7 +266,9 @@ Log.i(TAG, "Connection Failed: ConnectionResult.getErrorCode() = " + connectionR
         googleApiClient.disconnect();
     }
 
+
 }
+
 
 
 
