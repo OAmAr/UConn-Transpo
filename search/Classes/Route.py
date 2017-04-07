@@ -24,13 +24,13 @@ class Route:
         locs = shared_data['locations']
         for bus in locs:
         	if bus["RouteID"] == self.getID():
-        		self._buses.append(bus["VehicleID"],self.getColor())
+        		self._buses.append(bus["VehicleID"],self.getColor(),self)
         self._buses=temp
 
     def _populateStops(self):
         for i in range(self._data["Stops"]):
         	stop = self._data["Stops"][i]
-        	self._stops[stop]=i
+                self._stops[stop]=i
     def getBuses(self):
         return self._buses
 
