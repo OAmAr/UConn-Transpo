@@ -104,6 +104,11 @@ We need to better understand our resources and limitations. We've had some grand
 
 ## Way of Working
 
+### Foundation Established
+
+Key practices and tools ready. Capability gaps analyzed and understood.
+Selected Practices, and tools integrated.
+
 ### Principles Established
 
 Tool needs agreed Practice & tool constraints known Capability gaps analyzed and understood. Selected practices and tools integrated.
