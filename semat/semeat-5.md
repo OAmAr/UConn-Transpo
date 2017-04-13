@@ -2,7 +2,7 @@
 
 Our application idea is a mobile application on the Android platform for UConn’s Bus System. An app does currently exist, however the app has major flaws that we seek to correct. The main feature of this app will be a route search, which takes some location on campus and a desired destination as inputs and returns the most efficient route using UConn’s busses. The app may have other features as well depending on progression rates, like walking directions. Overall, the app will run more efficiently and crash less than the current one as well. Because we as students at very in-tune are the end-user, we are at a very advantageous position for selecting a development methodology. We are leaning towards using Agile development due to the closeness of our team, however we will decide definitely in the coming week after learning more about different methods in class.
 
-Currently we have ~2547 lines of code written, most of it fetches data from the transportation database. We currently have 66 github commits for basic documentation, data fetching code, and this progress report. For other metrics, we have a method count of 89 and an average cyclomatic complexity of 1.6. The maximum cyclomatic complexity is 3. Our maximum depth of inheritance is 7 and our median is 1.
+Currently we have 6973 lines of code written. We currently have 103 git commits for basic documentation, data fetching code, and this progress report.For other metrics, we have a method count of 176 and an average cyclomatic complexity of 1.5. The maximum cyclomatic complexity is 3. Our maximum depth of inheritance is 7 and our median is 1.
 
 # SEMAT
 
