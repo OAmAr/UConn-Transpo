@@ -6,14 +6,14 @@ except ImportError:
     from data import busdata as route_data
 
 class Route:
-    def __init__(self, color,index = None):
+    def __init__(self, color):#,index = None):
         self._color = color #color must be the name of a route, caps must match
         self._buses = []
         self._stops = dict() #name, index
         self._data  = route_data.getBus(color)
         self._rtID  = self._data["RouteID"]
-        if index:
-        	self._index = index
+        #if index:
+        #    self._index = index
         self._populateBuses()
         self._populateStops()
         def update(self):
@@ -23,14 +23,14 @@ class Route:
         temp = []
         locs = shared_data['locations']
         for bus in locs:
-        	if bus["RouteID"] == self.getID():
-        		self._buses.append(bus["VehicleID"],self.getColor(),self)
-        self._buses=temp
+            if bus["RouteID"] == self.getID():
+                self._buses.append(bus["VehicleID"],self.getColor(),self)
+        #self._buses=temp
 
     def _populateStops(self):
         for i in range(self._data["Stops"]):
-        	stop = self._data["Stops"][i]
-                self._stops[stop]=i
+            stop = self._data["Stops"][i]
+            self._stops[stop]=i
     def getBuses(self):
         return self._buses
 
