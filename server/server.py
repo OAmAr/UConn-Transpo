@@ -4,6 +4,7 @@ import threading
 import socketserver
 from time import sleep
 from udp_responder import BusUDPHandler, BusUDPServer
+from httpsrv import BusHTTPRequestHandler, BusHTTPServer
 
 shared_data = dict()
 shared_data_lock = threading.Lock()
@@ -53,15 +54,20 @@ def rideSystemsLoop():
     routeThread.start()
 
 if __name__ == '__main__':
-    #stdscr = curses.initscr()
-    #curses.noecho()
-    #stdscr.clear()
 
     RSLoop = threading.Thread(target=rideSystemsLoop)
     RSLoop.start()
-    udpsrv = BusUDPServer(("localhost", 6269), BusUDPHandler, shared_data)
-    udpsrv.serve_forever()
-
+    UDPPORT = 6269
+    udpsrv = BusUDPServer(("0.0.0.0", UDPPORT), BusUDPHandler, shared_data)
+    UDPThread = threading.Thread(target=udpsrv.serve_forever)
+    UDPThread.start()
+    print("BusUDPServer serving at port", UDPPORT)
+    HTTPPORT = 8000
+    Handler = BusHTTPRequestHandler
+    httpd = BusHTTPServer(("", HTTPPORT), Handler, shared_data)
+    print("BusHTTPRequestHandler serving at port", HTTPPORT)
+    HTTPThread = threading.Thread(target=httpd.serve_forever)
+    HTTPThread.start()
 
     sleep(4)
 
