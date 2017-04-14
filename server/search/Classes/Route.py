@@ -32,7 +32,7 @@ class Route:
 
     def _populateStops(self):
         for i in range(len(self._data["Stops"])):
-            stop = self._data["Stops"][i]
+            stop = self._data["Stops"][i]['Description']
             self._stops[stop]=i
     def getBuses(self):
         return self._buses
