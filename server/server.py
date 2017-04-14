@@ -5,6 +5,7 @@ import socketserver
 from time import sleep
 from udp_responder import BusUDPHandler, BusUDPServer
 from httpsrv import BusHTTPRequestHandler, BusHTTPServer
+from search.Classes.Map import Map
 
 shared_data = dict()
 shared_data_lock = threading.Lock()
@@ -53,6 +54,11 @@ def rideSystemsLoop():
     stopThread.start()
     routeThread.start()
 
+    def updateMap():
+        while True:
+            Map.update()
+            sleep(20)
+
 if __name__ == '__main__':
 
     RSLoop = threading.Thread(target=rideSystemsLoop)
@@ -68,6 +74,9 @@ if __name__ == '__main__':
     print("BusHTTPRequestHandler serving at port", HTTPPORT)
     HTTPThread = threading.Thread(target=httpd.serve_forever)
     HTTPThread.start()
+
+    updateMapThread = threading.Thread(target=updateMap)
+    updateMapThread.start()
 
     sleep(4)
 
