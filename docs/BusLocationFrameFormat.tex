@@ -14,7 +14,7 @@
 }
 
 \begin{document}
-\noindent The response is contained within a UDP frame and the format of the packed data is defined as follows. 
+\noindent The response is contained within a UDP frame and the format of the packed data is defined as follows. All integers are unsigned unless otherwise specified. 
 
 \begin{verbatim}
   0                   1                   2                   3
@@ -47,4 +47,6 @@
 \noindent Longitude: Floating point value equal to the longitude of the bus.
 
 \noindent Ground Speed: Floating point value equal to the ground speed of the bus in miles per hour. 
+
+The Request format is very simple. It is just the VehicleID of the bus you want to request the location of as a 4 byte unsigned integer. 
 \end{document}
