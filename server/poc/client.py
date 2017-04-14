@@ -3,7 +3,7 @@ import sys
 import struct
 
 HOST, PORT = "cam-dorm.tk", 6269
-data = 40
+data = 46
 
 # SOCK_DGRAM is the socket type to use for UDP sockets
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

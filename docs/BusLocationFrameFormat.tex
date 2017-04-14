@@ -1,0 +1,50 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\setlength{\parskip}{\baselineskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+
+\begin{document}
+\noindent The response is contained within a UDP frame and the format of the packed data is defined as follows. 
+
+\begin{verbatim}
+  0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Flags     |    Seconds    |            Heading            |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |            RouteID            |           VehicleID           |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                           Latitude                            |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                           Longitude                           |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                          Ground Speed                         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+\end{verbatim}
+
+\noindent Flags: Bit 0 is for isDelayed and bit 1 is for IsOnRoute. The rest are set to zero and reserved for future use. 
+
+\noindent Seconds: Corresponds to the seconds value reported by Ride Systems. 
+
+\noindent Heading: Integer equal to the heading of the bus in degrees. 
+
+\noindent RouteID: Integer equal to the RouteID of the bus. You can probably get away with storing a static mapping of RouteIDs to route colors. 
+
+\noindent VehicleID: The VehicleID of the bus. If you want, you could request locations for, say, VehicleIDs 1 through 100 when the app starts up and then save a list of the VehicleIDs you get responses for. While this is not particularly efficient is is very fast. It's up to you if you decide to do this but we should probably at least try it. 
+
+\noindent Latitude: Floating point value equal to the latitude of the bus.
+
+\noindent Longitude: Floating point value equal to the longitude of the bus.
+
+\noindent Ground Speed: Floating point value equal to the ground speed of the bus in miles per hour. 
+\end{document}
