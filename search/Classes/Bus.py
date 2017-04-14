@@ -8,18 +8,8 @@ except ImportError:
 #add timetostop, nextstop,getlocation
 class Bus:
 	def __init__(self, number, color):
-<<<<<<< HEAD
-		 self._color  = color
-		 self._number = number
-		 self._data   = BusData(shared_data).getBus(self.getColor())
-		 self._currentLocation = 
-	def getColor():
-		return self._color
-	def getNumber():
-		return self._number
-=======
 	    self._color  = color
-	    self._number = number #this should match the vehicle ID 
+	    self._number = number #this should match the vehicle ID
 	    self._data   = BusData(shared_data).getBus(self.getColor())
             self._location = None #next location
             self._time = None #time to next location in seconds
@@ -32,7 +22,7 @@ class Bus:
             return self._time
         def getLocation(self):
             return self._location
-        
+
         def update(self):
             self.updateLocation()
         def updateLocation(self):
