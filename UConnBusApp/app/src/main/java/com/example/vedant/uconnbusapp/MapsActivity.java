@@ -21,13 +21,9 @@ import android.widget.ZoomControls;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -51,6 +47,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationRequest locationRequest;
     private TextView get_places;
     protected static final String TAG = "MapsActivity";
+
+
 
 
     @Override
@@ -86,6 +84,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 mMap.animateCamera(CameraUpdateFactory.zoomIn());
+
 
             }
         });
@@ -142,10 +141,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(latLng)).setVisible(true);
 
         // Move the camera instantly to location with a zoom of 15.
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
 
         // Zoom in, animating the camera.
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(14), 2000, null);
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
 
 
         // mMap.addMarker(new MarkerOptions().position(latLng).title("UConn Storrs, CT"));
@@ -169,10 +168,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
          }
          }
 
-        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment) //This is search suggestions.
-                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+        /*PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment) //This is search suggestions.
+        getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
@@ -185,7 +184,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Log.i(TAG, "An error occurred: " + status);
             }
 
-        });
+        }
+        ); */
 
 
     }

@@ -1,13 +1,5 @@
 Todo:
-
-	#initialize git repo
-	add all members to git
-	make sure everyone knows git basics
-	decide on primary features
-	decide on secondary features
-	create design document detailing possible implementations
-	split into smaller tasks
-	assign tasks 
-	begin tasks
-	finish todo
+    map from shared_data
+    backend to frontend integration
+    pick between sphinx and doxygen for docs, figure out why they both arent working
 
