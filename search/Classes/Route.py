@@ -1,34 +1,37 @@
 try:
     from search.Classes.data import shared_data
     from search.Classes.data import bus_data as route_data
+    from search.Classes.Bus import Bus
 except ImportError:
     from data import shared_data
     from data import busdata as route_data
+    from Bus import Bus
 
 class Route:
-    def __init__(self, color):#,index = None):
+    def __init__(self, color,sdata=shared_data):#,index = None):
         self._color = color #color must be the name of a route, caps must match
         self._buses = []
         self._stops = dict() #name, index
+        self._sdata = sdata
         self._data  = route_data.getBus(color)
         self._rtID  = self._data["RouteID"]
         #if index:
         #    self._index = index
         self._populateBuses()
         self._populateStops()
-        def update(self):
-            for bus in self.getBuses():
-                bus.updated()
+    def update(self):
+        for bus in self.getBuses():
+            bus.update()
     def _populateBuses(self):
         temp = []
-        locs = shared_data['locations']
+        locs = self._sdata['locations']
         for bus in locs:
             if bus["RouteID"] == self.getID():
-                self._buses.append(bus["VehicleID"],self.getColor(),self)
+                self._buses.append(Bus(bus["VehicleID"],self.getColor(),self,self._sdata))
         #self._buses=temp
 
     def _populateStops(self):
-        for i in range(self._data["Stops"]):
+        for i in range(len(self._data["Stops"])):
             stop = self._data["Stops"][i]
             self._stops[stop]=i
     def getBuses(self):

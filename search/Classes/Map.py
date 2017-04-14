@@ -13,11 +13,23 @@ except ImportError:
     #add stops
     #create map from shared_data maybe:
 class Map:
-    def __init__(self,data=None):
+    def __init__(self,data=shared_data):
         self._stops  = dict() #name and Stop
         self._routes = dict() #name and Route
-        self._data = data
-    
+        if data:
+            self.create(data)
+    def create(self,data):
+        for route in shared_data['routes']:
+            self._routes[route['Description']] = Route(route['Description'])
+            for stop in self._routes[route['Description']].getStops():
+                if stop['Description'] not in self._stops:
+                    self._stops[stop['Description']] = Stop(stop['Longitude'],stop['Latitude'],stop['Description'], self._sdata)
+                #self._stops[stop['Description]']].routes.append(route['Description'])
+                
+        #for stop in shared_data['stops']:
+        #    self._stops[stop['Description']] = Stop(
+
+
     def getDirections(self, start, end):
 	#given a start and end gives routes that dict of possible route and time it takes
         possible = self.possibleRoutes(start,end)
