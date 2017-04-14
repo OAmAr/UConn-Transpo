@@ -13,16 +13,16 @@ except ImportError:
     #add stops
     #create map from shared_data maybe:
 class Map:
-    def __init__(self):
+    def __init__(self,data=None):
         self._stops  = dict() #name and Stop
         self._routes = dict() #name and Route
-
+        self._data = data
+    
     def getDirections(self, start, end):
 	#given a start and end gives routes that dict of possible route and time it takes
         possible = self.possibleRoutes(start,end)
-        times = {route:self.getTime(start,end,route) for route in possible}
+        times = {route:self.getTime(start,end,route)+self.getTimeToStartStop(start,route) for route in possible}
         return times
-
 
     def getTime(self, start,end, route):
         started = False
@@ -44,11 +44,11 @@ class Map:
                 i=0
         return time
 
-    def getClosestStop(self):
-        pass
-
-    def getTimeToClosestStop(self):
-        pass
+    def getTimeToStartStop(self,start,route):
+        times = [bus.getNextTime()+self.getTime(bus.getLocation(),start,route) for bus in route.getBuses()]
+        return min(times)
+        
+        
 
 
     def possibleRoutes(self, start,end):
