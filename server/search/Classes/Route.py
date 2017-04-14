@@ -35,8 +35,8 @@ class Route:
             Popuates self._stops dict with key stop name as a string and value [index on route, stop dict on route]
         '''
         for i in range(len(self._data["Stops"])):
-            stop = self._data["Stops"][]i
-            self._stops[stop]['Description']=[i,stop]
+            stop = self._data["Stops"][i]
+            self._stops[stop['Description']]=[i,stop]
     def getBuses(self):
         return self._buses
 

@@ -16,15 +16,17 @@ class Map:
     def __init__(self,data=shared_data):
         self._stops  = dict() #name and Stop
         self._routes = dict() #name and Route
+        self._sdata  = data
         if data:
-            self.create(data)
+            self.create(self._sdata)
+            
     def create(self,data):
         for route in shared_data['routes']:
-            self._routes[route['Description']] = Route(route['Description'])
+            self._routes[route['Description']] = Route(route['Description'], self._sdata)
             for stop in self._routes[route['Description']].getStops():
                 if stop not in self._stops:
-                    curr_route = self._routes[route['Description']
-                    cstop = curr_route.getStops()[stop][2]
+                    curr_route = self._routes[route['Description']]
+                    cstop = curr_route.getStops()[stop][1]
                     self._stops[stop] = Stop(cstop['Longitude'],cstop['Latitude'],cstop['Description'], self._sdata)
                 #self._stops[stop['Description]']].routes.append(route['Description'])
                 
@@ -81,3 +83,5 @@ class Map:
 
     def getRoutes(self):
         return self._routes
+
+print(Map(shared_data).getRoutes().keys())
