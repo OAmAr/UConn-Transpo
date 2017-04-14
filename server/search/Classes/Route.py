@@ -11,7 +11,7 @@ class Route:
     def __init__(self, color,sdata=shared_data):#,index = None):
         self._color = color #color must be the name of a route, caps must match
         self._buses = []
-        self._stops = dict() #name, index
+        self._stops = dict() #name, [index,dict]
         self._sdata = sdata
         self._data  = route_data.getBus(color)
         self._rtID  = self._data["RouteID"]
@@ -31,9 +31,12 @@ class Route:
         #self._buses=temp
 
     def _populateStops(self):
+        '''
+            Popuates self._stops dict with key stop name as a string and value [index on route, stop dict on route]
+        '''
         for i in range(len(self._data["Stops"])):
-            stop = self._data["Stops"][i]['Description']
-            self._stops[stop]=i
+            stop = self._data["Stops"][]i
+            self._stops[stop]['Description']=[i,stop]
     def getBuses(self):
         return self._buses
 

@@ -22,8 +22,10 @@ class Map:
         for route in shared_data['routes']:
             self._routes[route['Description']] = Route(route['Description'])
             for stop in self._routes[route['Description']].getStops():
-                if stop['Description'] not in self._stops:
-                    self._stops[stop['Description']] = Stop(stop['Longitude'],stop['Latitude'],stop['Description'], self._sdata)
+                if stop not in self._stops:
+                    curr_route = self._routes[route['Description']
+                    cstop = curr_route.getStops()[stop][2]
+                    self._stops[stop] = Stop(cstop['Longitude'],cstop['Latitude'],cstop['Description'], self._sdata)
                 #self._stops[stop['Description]']].routes.append(route['Description'])
                 
         #for stop in shared_data['stops']:
@@ -59,9 +61,6 @@ class Map:
     def getTimeToStartStop(self,start,route):
         times = [bus.getNextTime()+self.getTime(bus.getLocation(),start,route) for bus in route.getBuses()]
         return min(times)
-        
-        
-
 
     def possibleRoutes(self, start,end):
         if not start in self._stops or not end in self._stops:
