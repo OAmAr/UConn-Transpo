@@ -24,3 +24,5 @@ class Stop(Location):
     	return str(self._name)
     def getRoutes(self):
     	return self._routes
+    def update(self):
+        return

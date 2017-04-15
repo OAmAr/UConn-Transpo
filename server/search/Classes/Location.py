@@ -1,17 +1,28 @@
 #literally just a x y pair on map. Not sure how map works yet, maybe set some boundaries? Probably better for map class to handle
-class Location: 
-	def __init__(self, x=None, y=None):
-		self._coords = [x,y]
-	def getLocation(self):
-		return [self.getX(),self.getY()]
-	def setX(self,x):
-		self._coords[0]=x
-	def setY(self,y):
-		self._coords[1]=y
-	def getX(self):
-		return self._coords[0]
-	def getY(self):
-		return self._coords[1]
-	def resetCoords(self, x, y):
-		self.setX(x)
-		self.setY(y)
+class Location:
+    '''Location Class, extended by Stop'''
+    def __init__(self, x, y):
+        '''Takes x and y longitude and latitude'''
+        self._coords = [int(x),int(y)]
+    def getLocation(self):
+        '''Returns coordinates'''
+        return [self.getX(),self.getY()]
+    def setX(self,x):
+        '''Sets x coordinate'''
+	self._coords[0]=int(x)
+    def setY(self,y):
+        '''Sets y coordinate'''
+        self._coords[1]=int(y)
+    def getX(self):
+        '''Returns X coordinate'''
+        return self._coords[0]
+    def getY(self):
+        '''Returns y Coordinate'''
+        return self._coords[1]
+    def resetCoords(self, x, y):
+        '''Sets new coordinates'''
+        self.setX(int(x))
+        self.setY(int(y))
+    def distance(self, loc):
+        '''Returns float distance between two locations'''
+        return float(sqrt(((self.getX()-loc.getX())**2)+((self.getY()-loc.getY())**2)))
