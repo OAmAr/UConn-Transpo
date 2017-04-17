@@ -1,5 +1,5 @@
 try:
-    from search.Classes.data import BusData
+    from search.Classes.facade import BusData
 except ImportError:
     from facade import BusData
 #figure out how bus figures out which stop it is at, figure out how bus data is supposed to work, figure out how bus number works
@@ -52,15 +52,22 @@ class Bus:
             Updates bus data
         '''
         self.updateLocation()
+
     def updateLocation(self):
         '''
             Updates location data
         '''
+        mintime = float('inf')
+        location = None
         for stop in self._sdata['stops']:
             for vehicle in stop["VehicleEstimates"]:
-                if self.getNumber() == vehicle["VehicleID"]:
-                    self._time = vehicle["SecondsToStop"]
-                    for stop2 in self.getRoute().getStops():
-                        stopd = self.getRoute().getStops()[stop2][1]
-                        if stopd["RouteStopID"] == stop["RouteStopID"]:     # todo check if this is the right key or if we can just cut it out
-                            self._location = stopd["Description"]
+                if vehicle["VehicleID"] == self.getNumber():
+                    if vehicle['SecondsToStop'] < mintime:
+                        mintime = vehicle['SecondsToStop']
+                        for stop2 in self.getRoute().getStops():
+                            stopd=self.getRoute().getStops()[stop2][1]
+                            if stopd["RouteStopID"] == stop["RouteStopID"]:
+                                location = stopd["Description"]
+        self._time = mintime
+        self._location = location
+    

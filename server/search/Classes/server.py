@@ -3,10 +3,10 @@ import json
 import threading
 import socketserver
 from time import sleep
-#from udp_responder import BusUDPHandler, BusUDPServer
-#from httpsrv import BusHTTPRequestHandler, BusHTTPServer
-#from Map import Map
-
+from udp_responder import BusUDPHandler, BusUDPServer
+from httpsrv import BusHTTPRequestHandler, BusHTTPServer
+#from search.Classes.Map import Map
+from Map import Map
 shared_data = dict()
 shared_data_lock = threading.Lock()
 
@@ -54,32 +54,35 @@ def rideSystemsLoop():
     stopThread.start()
     routeThread.start()
 
-    #def updateMap():
-     #   while True:
-      #      Map.update()
-       #     sleep(20)
-
-if __name__ == '__main__':
-
+def updateMap(M):
+    while True:
+        M.update()
+        sleep(20)
+def main():
+        
     RSLoop = threading.Thread(target=rideSystemsLoop)
     RSLoop.start()
-    #UDPPORT = 6269
-    #udpsrv = BusUDPServer(("0.0.0.0", UDPPORT), BusUDPHandler, shared_data)
-    #UDPThread = threading.Thread(target=udpsrv.serve_forever)
-    #UDPThread.start()
+    UDPPORT = 6269
+    udpsrv = BusUDPServer(("0.0.0.0", UDPPORT), BusUDPHandler, shared_data)
+    UDPThread = threading.Thread(target=udpsrv.serve_forever)
+    UDPThread.start()
     print("BusUDPServer serving at port", UDPPORT)
     HTTPPORT = 8000
-    #Handler = BusHTTPRequestHandler
+    Handler = BusHTTPRequestHandler
     httpd = BusHTTPServer(("", HTTPPORT), Handler, shared_data)
     print("BusHTTPRequestHandler serving at port", HTTPPORT)
     HTTPThread = threading.Thread(target=httpd.serve_forever)
     HTTPThread.start()
-
-   # updateMapThread = threading.Thread(target=updateMap)
-   # updateMapThread.start()
-
     sleep(4)
-
+    M = Map(shared_data)
+    #updateMapThread = threading.Thread(target=updateMap)
+    #updateMapThread.start()
+    return M
+if __name__ == '__main__':
+    M=main()
+    print("Shared_data:", shared_data.keys())
+    print(M.getDirections('Student Union', 'Student Union'))
+   # M = Map(shared_data)
     # for line in shared_data['routes']:
     #     print(line['Description'])
     # blue = 0
@@ -89,10 +92,3 @@ if __name__ == '__main__':
     # orange = 4
     # purple = 5
 
-
-    #stdscr.refresh()
-# sleep(1)
-# print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
-# exit()
-#curses.echo()
-#curses.endwin()
