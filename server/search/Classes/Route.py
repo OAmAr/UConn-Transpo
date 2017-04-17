@@ -1,11 +1,13 @@
 import operator
 try:
     #from search.Classes.data import shared_data
-    from search.Classes.data import bus_data as route_data
+   # from search.Classes.data import bus_data as route_data
+    from search.Classes.facade import BusData as RouteData
     from search.Classes.Bus import Bus
 except ImportError:
     #from data import shared_data
-    from data import busdata as route_data
+    #from data import busdata as route_data
+    from facade import BusData as RouteData
     from Bus import Bus
 
 class Route:
@@ -20,7 +22,7 @@ class Route:
         self._buses = []
         self._stops = dict() #name, [index,dict]
         self._sdata = sdata
-        self._data  = route_data.getBus(color)
+        self._data  = RouteData(sdata).getBus(color)
         self._rtID  = self._data["RouteID"]
         #if index:
         #    self._index = index

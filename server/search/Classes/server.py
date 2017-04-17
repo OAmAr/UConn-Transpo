@@ -89,54 +89,6 @@ if __name__ == '__main__':
     # orange = 4
     # purple = 5
 
-    def getStops(busNumber):
-        l = len(shared_data['routes'][busNumber]['Stops'])
-        stops = []
-        for i in range(l):
-            stops.append(shared_data['routes'][busNumber]['Stops'][i]['Description'])
-        return(stops)
-
-    # print(getStops(0))
-
-    def getTime(busNumber,start,end):
-        l = len(shared_data['routes'][busNumber]['Stops'])
-        time = 0
-        startCounting = False
-
-        for stops in range(l*2):
-            stops = stops%l
-            current = shared_data['routes'][busNumber]['Stops'][stops]
-            print
-            if current['Description'] == start:
-                startCounting = True
-            if startCounting and current['Description'] == end:
-                return time
-            if startCounting:
-                time = time + current['SecondsToNextStop']
-
-
-
-    # print(shared_data['routes'][0]['Stops'][0]['Description'])
-    # print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
-    #
-    # print(shared_data['routes'][0]['Stops'][1]['Description'])
-    # print(shared_data['routes'][0]['Stops'][1]['SecondsToNextStop'])
-
-    # print(getTime(5,'Clubhouse Apartments','MSB'))
-    # for line in shared_data['routes']:
-    #     print(line['Description'])
-
-
-    # the issue is the search is only linear, it needs to be circular
-
-    # for i in range(len(shared_data['routes'][5]['Stops'])):
-    #     print(shared_data['routes'][5]['Stops'][i]['Description'])
-    # print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
-    # print(shared_data['routes'][0]['Stops'][3]['Description'])
-    # print(shared_data['routes'][0]['Stops'][4]['Description'])
-    # print(shared_data['routes'][0]['Stops'][5]['Description'])
-
-
 
     #stdscr.refresh()
 # sleep(1)
