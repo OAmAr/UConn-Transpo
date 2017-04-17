@@ -1,9 +1,9 @@
 try:
-    from search.Classes.data  import shared_data
+#    from search.Classes.data  import shared_data
     from search.Classes.Stop  import Stop
     from search.Classes.Route import Route
 except ImportError:
-    from data import shared_data
+#    from data import shared_data
     from Stop import Stop
     from Route import Route
 #issues:
@@ -13,14 +13,18 @@ except ImportError:
     #add stops
     #create map from shared_data maybe:
 class Map:
-    def __init__(self,data=shared_data):
+    '''Main class, takes shared data and intializes all actors'''
+    def __init__(self,data):
+        '''Takes data and intializes stops, routes, all buses, and updates locations'''
         self._stops  = dict() #name and Stop
         self._routes = dict() #name and Route
         self._sdata  = data
         if data:
             self.create(self._sdata)
-            
+        self.update()   
+
     def create(self,data):
+        '''Takes data and intializes stops, routes, all buses, and updates locations'''
         for route in shared_data['routes']:
             self._routes[route['Description']] = Route(route['Description'], self._sdata)
             for stop in self._routes[route['Description']].getStops():
@@ -35,36 +39,56 @@ class Map:
 
 
     def getDirections(self, start, end):
-	#given a start and end gives routes that dict of possible route and time it takes
+	''''Given a start and end gives  dict of possible route and time it takes'''
         possible = self.possibleRoutes(start,end)
-        times = {route:self.getTime(start,end,route)+self.getTimeToStartStop(start,route) for route in possible}
+        try:
+            times = {route:self.getTime(start,end,route)+self.getTimeToStartStop(start,route) for route in possible} #might need to break this up for try
+        except TypeError:
+            print("If getting no error check the try except in getdirections in map")
+            if self.getTime(start,end,possible[0]) == None:
+                print("No possible route")
+                return -1
+            if self.getTimeToStartStop(start,possible[0]) == None:
+                print("No bus running")
+                return -1
         return times
 
     def getTime(self, start,end, route):
+        '''Gets time it takes to get from point A to point B on a possible Route'''
         started = False
         done    = False
-        l       = len(stops)
-        i       = time = 0
-        stops   = self._routes[route]["Stops"]
-        while not done and i<l*2:
-            if stops[i] == start:
+        order   = self._routes[route].orderstops()
+        l       = len(order)
+        i       = time = j = 0
+        while not done and j<l*2:
+            i = j % l
+         #   print(j)
+            stops = self._routes[route].getStops()[order[i]][1]
+            if order[i] == start:
                 started == True
-            elif started and stops[i] == end:
+            elif started and order[i] == end:
                 done    = True
                 started = False
             if started:
                 time+= stops[i]["TimeToNextStop"]
                 time+= stop[i]["TimeAtStop"]
-            i+=1
-            if i >= l:
-                i=0
+            j+=1
+        if not done:
+            print("Did not find a time")
+        if time==0:
+            print("We got a 0 from get time on", start, end, route)
+        #print("time: ",time)
         return time
 
     def getTimeToStartStop(self,start,route):
-        times = [bus.getNextTime()+self.getTime(bus.getLocation(),start,route) for bus in route.getBuses()]
+        '''Calculates minimum time it takes for a bus on a route to get to a stop from where it currently is'''
+        times = [bus.getNextTime()+self.getTime(bus.getLocation(),start,route) for bus in self._routes[route].getBuses()]
+        if not times:
+            return None
         return min(times)
 
     def possibleRoutes(self, start,end):
+        '''Returns the possible routes that have start and end on them'''
         if not start in self._stops or not end in self._stops:
             raise RuntimeError("start or end not in stops")
             return
@@ -75,13 +99,17 @@ class Map:
         return possible
 
     def update(self):
+        '''Update all objects in map'''
         for route in self.getRoutes():
-            route.update()
+            self.getRoutes()[route].update()
+        for stop in self.getStops():
+            self.getStops()[stop].update()
 
     def getStops(self):
+        '''Returns stop dictionary (Probably bet used with .keys() since don't need to see the objects'''
         return self._stops
 
     def getRoutes(self):
+        '''Returns stop dictionary (Probably bet used with .keys() since don't need to see the objects'''
         return self._routes
-
-print(Map(shared_data).getRoutes().keys())
+#print(Map(shared_data).getDirections("Buckley", "Student Union"))
