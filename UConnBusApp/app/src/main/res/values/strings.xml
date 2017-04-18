@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">UConn Bus App</string>
+    <string name="drawer_open">drawer open</string>
+    <string name="drawer_close">drawer close</string>
     <string name="title_activity_maps">Map</string>
     <string name="go">Go</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
