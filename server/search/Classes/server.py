@@ -75,8 +75,8 @@ def main():
     HTTPThread.start()
     sleep(4)
     M = Map(shared_data)
-    #updateMapThread = threading.Thread(target=updateMap)
-    #updateMapThread.start()
+    updateMapThread = threading.Thread(target=updateMap, args=[M])
+    updateMapThread.start()
     return M
 if __name__ == '__main__':
     M=main()

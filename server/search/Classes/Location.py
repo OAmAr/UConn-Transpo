@@ -1,4 +1,4 @@
-#literally just a x y pair on map. Not sure how map works yet, maybe set some boundaries? Probably better for map class to handle
+import math
 class Location:
     '''Location Class, extended by Stop'''
     def __init__(self, x, y):
@@ -27,4 +27,4 @@ class Location:
         self.setY(int(y))
     def distance(self, loc):
         '''Returns float distance between two locations'''
-        return float(sqrt(((self.getX()-loc.getX())**2)+((self.getY()-loc.getY())**2)))
+        return float(math.sqrt(((self.getX()-loc.getX())**2)+((self.getY()-loc.getY())**2)))

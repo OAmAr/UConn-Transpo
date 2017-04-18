@@ -1,12 +1,8 @@
 import operator
 try:
-    #from search.Classes.data import shared_data
-   # from search.Classes.data import bus_data as route_data
     from search.Classes.facade import BusData as RouteData
     from search.Classes.Bus import Bus
 except ImportError:
-    #from data import shared_data
-    #from data import busdata as route_data
     from facade import BusData as RouteData
     from Bus import Bus
 
