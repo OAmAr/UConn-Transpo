@@ -54,10 +54,11 @@ def rideSystemsLoop():
     stopThread.start()
     routeThread.start()
 
-#def updateMap():
-#    while True:
-#        Map.update()
-#        sleep(20)
+#shared_data['map'] = Map()
+def updateMap():
+    while True:
+        shared_data['map'].update()
+        sleep(20)
 
 if __name__ == '__main__':
 
@@ -75,8 +76,8 @@ if __name__ == '__main__':
     HTTPThread = threading.Thread(target=httpd.serve_forever)
     HTTPThread.start()
 
- #   updateMapThread = threading.Thread(target=updateMap)
- #   updateMapThread.start()
+    updateMapThread = threading.Thread(target=updateMap)
+    #updateMapThread.start()
 
     sleep(4)
 
@@ -138,9 +139,6 @@ if __name__ == '__main__':
 
 
 
-    #stdscr.refresh()
 # sleep(1)
 # print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
 # exit()
-#curses.echo()
-#curses.endwin()
