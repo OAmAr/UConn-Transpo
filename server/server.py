@@ -5,8 +5,8 @@ import socketserver
 from time import sleep
 from udp_responder import BusUDPHandler, BusUDPServer
 from httpsrv import BusHTTPRequestHandler, BusHTTPServer
-#from search.Classes.Map import Map
-
+from search.Classes.Map import Map
+#from Map import Map
 shared_data = dict()
 shared_data_lock = threading.Lock()
 
@@ -54,14 +54,12 @@ def rideSystemsLoop():
     stopThread.start()
     routeThread.start()
 
-#shared_data['map'] = Map()
-def updateMap():
+def updateMap(M):
     while True:
-        shared_data['map'].update()
+        M.update()
         sleep(20)
-
-if __name__ == '__main__':
-
+def main():
+        
     RSLoop = threading.Thread(target=rideSystemsLoop)
     RSLoop.start()
     UDPPORT = 6269
@@ -75,12 +73,17 @@ if __name__ == '__main__':
     print("BusHTTPRequestHandler serving at port", HTTPPORT)
     HTTPThread = threading.Thread(target=httpd.serve_forever)
     HTTPThread.start()
-
-    updateMapThread = threading.Thread(target=updateMap)
-    #updateMapThread.start()
-
     sleep(4)
-
+    M = Map(shared_data)
+    updateMapThread = threading.Thread(target=updateMap, args=[M])
+    updateMapThread.start()
+    return M
+if __name__ == '__main__':
+    M=main()
+    shared_data['map'] = M
+    #print("Shared_data:", shared_data.keys())
+    #print(M.getDirections('Student Union', 'Student Union'))
+   # M = Map(shared_data)
     # for line in shared_data['routes']:
     #     print(line['Description'])
     # blue = 0
@@ -90,55 +93,3 @@ if __name__ == '__main__':
     # orange = 4
     # purple = 5
 
-    def getStops(busNumber):
-        l = len(shared_data['routes'][busNumber]['Stops'])
-        stops = []
-        for i in range(l):
-            stops.append(shared_data['routes'][busNumber]['Stops'][i]['Description'])
-        return(stops)
-
-    # print(getStops(0))
-
-    def getTime(busNumber,start,end):
-        l = len(shared_data['routes'][busNumber]['Stops'])
-        time = 0
-        startCounting = False
-
-        for stops in range(l*2):
-            stops = stops%l
-            current = shared_data['routes'][busNumber]['Stops'][stops]
-            print
-            if current['Description'] == start:
-                startCounting = True
-            if startCounting and current['Description'] == end:
-                return time
-            if startCounting:
-                time = time + current['SecondsToNextStop']
-
-
-
-    # print(shared_data['routes'][0]['Stops'][0]['Description'])
-    # print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
-    #
-    # print(shared_data['routes'][0]['Stops'][1]['Description'])
-    # print(shared_data['routes'][0]['Stops'][1]['SecondsToNextStop'])
-
-    # print(getTime(5,'Clubhouse Apartments','MSB'))
-    # for line in shared_data['routes']:
-    #     print(line['Description'])
-
-
-    # the issue is the search is only linear, it needs to be circular
-
-    # for i in range(len(shared_data['routes'][5]['Stops'])):
-    #     print(shared_data['routes'][5]['Stops'][i]['Description'])
-    # print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
-    # print(shared_data['routes'][0]['Stops'][3]['Description'])
-    # print(shared_data['routes'][0]['Stops'][4]['Description'])
-    # print(shared_data['routes'][0]['Stops'][5]['Description'])
-
-
-
-# sleep(1)
-# print(shared_data['routes'][0]['Stops'][0]['SecondsToNextStop'])
-# exit()

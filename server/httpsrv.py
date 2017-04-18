@@ -21,10 +21,13 @@ class BusHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         elif self.path[0:8] == '/search/':
             # call search algorithm
             args = self.path.split('/')
+            print(args)
             try:
-                pass # call search algo
-                responsestr = "tmp" # set to result of search algorithm
-            except:
+                result = self.shared_data['map'].getDirectionsLoc(args[2:4],
+                args[4:6])
+                responsestr = str(result) # set to result of search algorithm
+            except Exception as e:
+                print(e)
                 responsestr = "Search Failed"
         else:
             responsestr = self.path
