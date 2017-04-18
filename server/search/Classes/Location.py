@@ -3,13 +3,15 @@ class Location:
     '''Location Class, extended by Stop'''
     def __init__(self, x, y):
         '''Takes x and y longitude and latitude'''
-        self._coords = [int(x),int(y)]
+        self._coords = [None,None]
+        if x and y:
+            self._coords = [int(x),int(y)]
     def getLocation(self):
         '''Returns coordinates'''
         return [self.getX(),self.getY()]
     def setX(self,x):
         '''Sets x coordinate'''
-	self._coords[0]=int(x)
+        self._coords[0]=int(x)
     def setY(self,y):
         '''Sets y coordinate'''
         self._coords[1]=int(y)

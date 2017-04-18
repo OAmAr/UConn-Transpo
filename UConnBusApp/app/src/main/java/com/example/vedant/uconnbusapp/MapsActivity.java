@@ -1,6 +1,7 @@
 package com.example.vedant.uconnbusapp;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -40,6 +41,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private final static int MY_PERMISSION_FINE_LOCATION = 101;
     ZoomControls zoom;
     Button markBt;
+    Button Navigation;
     Button geoLocationBt;
     Double myLatitude = null;
     Double myLongitude = null;
@@ -47,8 +49,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationRequest locationRequest;
     private TextView get_places;
     protected static final String TAG = "MapsActivity";
-
-
 
 
     @Override
@@ -89,7 +89,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        markBt = (Button) findViewById(R.id.btMark);
+        Navigation = (Button) findViewById(R.id.Navigation);
+        Navigation.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),NavigationDrawer.class));
+              }
+         });
+
+                markBt = (Button) findViewById(R.id.btMark);
         markBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,50 +132,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker in Storrs CT and move the camera
         LatLng latLng = new LatLng(41.807422, -72.254040);
         mMap.addMarker(new MarkerOptions().position(latLng)).setVisible(true);
-
         // Move the camera instantly to location with a zoom of 15.
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
-
         // Zoom in, animating the camera.
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
+        mMap.addMarker(new MarkerOptions().position(latLng).title("UConn Storrs, CT"));
 
 
-        // mMap.addMarker(new MarkerOptions().position(latLng).title("UConn Storrs, CT"));
         //float zoomLevel = 16.0;
         // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
 
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-         // TODO: Consider calling
-         //    ActivityCompat#requestPermissions
-         // here to request the missing permissions, and then overriding
-         //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-         //                                          int[] grantResults)
-         // to handle the case where the user grants the permission. See the documentation
-         // for ActivityCompat#requestPermissions for more details.
-         mMap.setMyLocationEnabled(true);
-         }
-         else {
-         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-         requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
-         }
-         }
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            mMap.setMyLocationEnabled(true);
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_FINE_LOCATION);
+            }
+        }
 
         /*PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment) //This is search suggestions.
         getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);

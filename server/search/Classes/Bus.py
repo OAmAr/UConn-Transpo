@@ -1,14 +1,14 @@
 try:
-    from search.Classes.data import BusData
+    from search.Classes.facade import BusData
 except ImportError:
-    from data import BusData
+    from facade import BusData
 #figure out how bus figures out which stop it is at, figure out how bus data is supposed to work, figure out how bus number works
 #add timetostop, nextstop,getlocation
 class Bus:
     '''
         Bus class initializes with Vehicle ID, route color, route object, and shared data
     '''
-    def __init__(self, number=None, color=None, route=None,sdata):
+    def __init__(self, number, color, route,sdata):
         '''
             Basic init function, takes bus number, bus color, and route object (?) and inits the rest on its own
         '''
@@ -52,14 +52,22 @@ class Bus:
             Updates bus data
         '''
         self.updateLocation()
+
     def updateLocation(self):
         '''
             Updates location data
         '''
+        mintime = float('inf')
+        location = None
         for stop in self._sdata['stops']:
             for vehicle in stop["VehicleEstimates"]:
-                if self.getNumber() == vehicle["VehicleID"]:
-                    self._timetoloc = vehicle["SecondsToStop"]
-                    for stop in self.getRoute().getStops():
-                        if stop["RouteStopID"] == vehicle["RouteStopID"]:
-                            self._location = stop["Description"]
+                if vehicle["VehicleID"] == self.getNumber():
+                    if vehicle['SecondsToStop'] < mintime:
+                        mintime = vehicle['SecondsToStop']
+                        for stop2 in self.getRoute().getStops():
+                            stopd=self.getRoute().getStops()[stop2][1]
+                            if stopd["RouteStopID"] == stop["RouteStopID"]:
+                                location = stopd["Description"]
+        self._time = mintime
+        self._location = location
+    

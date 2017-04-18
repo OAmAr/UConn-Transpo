@@ -6,7 +6,7 @@ except ImportError:
 
 class testLoc(unittest.TestCase):
 	def testNoParInit(self):
-		L = Location()
+		L = Location(None,None)
 		self.assertEqual(L.getLocation(), [None,None])
 	
 	def testgetBoth(self):
@@ -19,7 +19,7 @@ class testLoc(unittest.TestCase):
 		self.assertEqual(L.getY(), 7)
 	
 	def testSetSingle(self):
-		L = Location()
+		L = Location(None,None)
 		self.assertEqual(L.getLocation(), [None,None])
 		L.setX(8)
 		L.setY(7)
@@ -28,7 +28,7 @@ class testLoc(unittest.TestCase):
 		self.assertEqual(L.getY(), 7)
 	
 	def testReset(self):
-		L = Location()
+		L = Location(None,None)
 		self.assertEqual(L.getLocation(), [None,None])
 		L.setX(8)
 		L.setY(7)
