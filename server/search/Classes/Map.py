@@ -1,17 +1,12 @@
+import operator
 try:
-#    from search.Classes.data  import shared_data
     from search.Classes.Stop  import Stop
     from search.Classes.Route import Route
+    from search.Classes.Location import Location
 except ImportError:
-#    from data import shared_data
+    from Location import Location
     from Stop import Stop
     from Route import Route
-#issues:
-    #getTime only tells how much time you should spend in bus, not how long you'd have to wait for it to get to you/when it will get
-    #issue is its working on routes and not the busses on the routes
-#todo:
-    #add stops
-    #create map from shared_data maybe:
 class Map:
     '''Main class, takes shared data and intializes all actors'''
     def __init__(self,data):
@@ -33,12 +28,26 @@ class Map:
                     curr_route = self._routes[route['Description']]
                     cstop = curr_route.getStops()[stop][1]
                     self._stops[stop] = Stop(cstop['Longitude'],cstop['Latitude'],cstop['Description'], self._sdata)
-                #self._stops[stop['Description]']].routes.append(route['Description'])
-                
-        #for stop in shared_data['stops']:
-        #    self._stops[stop['Description']] = Stop(
-
-
+    def getDirectionsLoc(self, s_loc, e_loc):
+        '''Takes two [x,y] coords, finds the closeset stops to each location and then the fastest way to get between those sets of stops
+            return is of form:
+                {(([start,distance from startloc][end,distancefrom endloc]):{route:time}}
+        ''' 
+        stopstoconsider=2
+        Loc1 = Location(s_loc[0],s_loc[1])
+        Loc2 = Location(e_loc[0],e_loc[1])
+        stops1 = []
+        stops2 = []
+        ret    = {}
+        for stop in self.getStops():
+            stops1.append((stop,self.getStops()[stop].distance(Loc1)))
+            stops2.append((stop,self.getStops()[stop].distance(Loc2)))
+        stops1=sorted(stops1, key=operator.itemgetter(1))
+        stops2=sorted(stops2, key=operator.itemgetter(1))
+        for start in stops1[:stopstoconsider]: 
+            for end in stops2[:stopstoconsider]: 
+                ret[(start,end)] = self.getDirections(start[0],end[0])
+        return ret
     def getDirections(self, start, end):
         ''''Given a start and end gives  dict of possible route and time it takes'''
         possible = self.possibleRoutes(start,end)
@@ -56,40 +65,27 @@ class Map:
 
     def getTime(self, start,end, route):
         '''Gets time it takes to get from point A to point B on a possible Route'''
-        #print("got get time call for", start, end, route)
         started = False
         done    = False
         order   = self._routes[route].orderstops()
         l       = len(order)
         i       = time = j = 0
-        #print(l, "length")
         while not done and j<=l*2:
             i = j % l
-            #print("index", i)
             stop = self._routes[route].getStops()[order[i]][1]
-            #print(order[i]==start)
-            #print(end==order[i]==start)
             if order[i] == start:
-                #print("started")
-                #print(order[i], start)
                 started = True
-                #print(started)
-            #print(started, order[i], end)
             if started and order[i] == end:
-                #print("done")
                 done    = True
                 started = False
             if started:
-                #print("adding time")
-                #print(stops.keys())
                 time+= stop["SecondsToNextStop"]
                 time+= stop["SecondsAtStop"]
             j+=1
         if not done:
             print("Did not find a time")
-        if time==0:
-            print("We got a 0 from get time on", start, end, route)
-        #print("time: ",time)
+        if not done and time==0:
+            print("We got a 0 from get time on", start, end, route, "(thats ok if there is not a did not find a time msg before this")
         return time
 
     def getTimeToStartStop(self,start,route):
@@ -103,8 +99,8 @@ class Map:
     def possibleRoutes(self, start,end):
         '''Returns the possible routes that have start and end on them'''
         if not start in self._stops or not end in self._stops:
+            print(start,end)
             raise RuntimeError("start or end not in stops")
-            print(start,end,self_stops)
             return
         possible = []
         for route in self._routes:
@@ -126,4 +122,3 @@ class Map:
     def getRoutes(self):
         '''Returns stop dictionary (Probably bet used with .keys() since don't need to see the objects'''
         return self._routes
-#print(Map(shared_data).getDirections("Buckley", "Student Union"))
