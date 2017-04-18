@@ -13,11 +13,27 @@ except ImportError:
     #add stops
     #create map from shared_data maybe:
 class Map:
-    def __init__(self,data=None):
+    def __init__(self,data=shared_data):
         self._stops  = dict() #name and Stop
         self._routes = dict() #name and Route
-        self._data = data
-    
+        self._sdata  = data
+        if data:
+            self.create(self._sdata)
+            
+    def create(self,data):
+        for route in shared_data['routes']:
+            self._routes[route['Description']] = Route(route['Description'], self._sdata)
+            for stop in self._routes[route['Description']].getStops():
+                if stop not in self._stops:
+                    curr_route = self._routes[route['Description']]
+                    cstop = curr_route.getStops()[stop][1]
+                    self._stops[stop] = Stop(cstop['Longitude'],cstop['Latitude'],cstop['Description'], self._sdata)
+                #self._stops[stop['Description]']].routes.append(route['Description'])
+                
+        #for stop in shared_data['stops']:
+        #    self._stops[stop['Description']] = Stop(
+
+
     def getDirections(self, start, end):
 	#given a start and end gives routes that dict of possible route and time it takes
         possible = self.possibleRoutes(start,end)
@@ -27,29 +43,27 @@ class Map:
     def getTime(self, start,end, route):
         started = False
         done    = False
-        l       = len(stops)
-        i       = time = 0
-        stops   = self._routes[route]["Stops"]
-        while not done and i<l*2:
-            if stops[i] == start:
+        order   = self._routes[route].orderstops()
+        l       = len(order)
+        i       = time = j = 0
+        while not done and j<l*2:
+            i = j % l
+            print(j)
+            stops = self._routes[route].getStops()[order[i]][1]
+            if order[i] == start:
                 started == True
-            elif started and stops[i] == end:
+            elif started and order[i] == end:
                 done    = True
                 started = False
             if started:
                 time+= stops[i]["TimeToNextStop"]
                 time+= stop[i]["TimeAtStop"]
-            i+=1
-            if i >= l:
-                i=0
+            j+=1
         return time
 
     def getTimeToStartStop(self,start,route):
-        times = [bus.getNextTime()+self.getTime(bus.getLocation(),start,route) for bus in route.getBuses()]
+        times = [bus.getNextTime()+self.getTime(bus.getLocation(),start,route) for bus in self._routes[route].getBuses()]
         return min(times)
-        
-        
-
 
     def possibleRoutes(self, start,end):
         if not start in self._stops or not end in self._stops:
@@ -70,3 +84,4 @@ class Map:
 
     def getRoutes(self):
         return self._routes
+print(Map(shared_data).getDirections("Buckley", "Student Union"))
