@@ -1,0 +1,42 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\setlength{\parskip}{\baselineskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+
+\begin{document}
+\noindent From the client, you can access search functionality from the url 
+
+\url{http://cam-dorm.tk/search/<latitude1>/<longitude1>/<latitude2>/longitude<2>} 
+
+\noindent where the first set of coordinates refers to your current location and the second set refers to where you want to go. For example, 
+
+\url{http://cam-dorm.tk:8000/search/-72.2487053/41.8040168/-72.2603938/41.8031481} 
+
+\noindent gets directions from South Campus to Next Gen. The server returns the search results in JSON. That format is, as per Omar's documentation:
+
+\begin{verbatim}
+{(([start,distance from startloc][end,distancefrom endloc]):{route:time}}
+\end{verbatim}
+
+\noindent The directions I got from South to Next Gen were:
+\begin{verbatim}
+{(('Arjona Westbound', 0.0014533417801745336),
+('Hilltop Community Center' 0.00048495324517030413)): {'Blue': 2023},
+(('Arjona Eastbound', 0.001429215704507714), 
+('Hilltop Dorms Southbound',0.0025955969737216124)): {'Weekend': inf}, 
+(('Arjona Westbound', 0.0014533417801745336), 
+('Hilltop Dorms Southbound',0.0025955969737216124)): {}, 
+(('Arjona Eastbound', 0.001429215704507714), 
+('Hilltop Community Center', 0.00048495324517030413)): {'Blue': 2023, 'Weekend': inf}}
+\end{verbatim}
+\end{document}
