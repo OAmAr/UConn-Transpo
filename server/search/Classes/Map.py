@@ -8,9 +8,9 @@ except ImportError:
     from Stop import Stop
     from Route import Route
 class Map:
-    '''Main class, takes shared data and intializes all actors'''
+    """Main class, takes shared data and intializes all actors"""
     def __init__(self,data):
-        '''Takes data and intializes stops, routes, all buses, and updates locations'''
+        """Takes data and intializes stops, routes, all buses, and updates locations"""
         self._stops  = dict() #name and Stop
         self._routes = dict() #name and Route
         self._sdata  = data
@@ -20,7 +20,7 @@ class Map:
             print("Negatory captain, no buses running now (locations is empty)")
         
     def create(self,data):
-        '''Takes data and intializes stops, routes, all buses, and updates locations'''
+        """Takes data and intializes stops, routes, all buses, and updates locations"""
         for route in self._sdata['routes']:
             self._routes[route['Description']] = Route(route['Description'], self._sdata)
             for stop in self._routes[route['Description']].getStops():
@@ -29,10 +29,10 @@ class Map:
                     cstop = curr_route.getStops()[stop][1]
                     self._stops[stop] = Stop(cstop['Longitude'],cstop['Latitude'],cstop['Description'], self._sdata)
     def getDirectionsLoc(self, s_loc, e_loc):
-        '''Takes two [x,y] coords, finds the closeset stops to each location and then the fastest way to get between those sets of stops
+        """Takes two [x,y] coords, finds the closeset stops to each location and then the fastest way to get between those sets of stops
             return is of form:
                 {(([start,distance from startloc][end,distancefrom endloc]):{route:time}}
-        ''' 
+        """ 
         stopstoconsider=2
         Loc1 = Location(s_loc[0],s_loc[1])
         Loc2 = Location(e_loc[0],e_loc[1])
@@ -49,7 +49,7 @@ class Map:
                 ret[(start,end)] = self.getDirections(start[0],end[0])
         return ret
     def getDirections(self, start, end):
-        ''''Given a start and end gives  dict of possible route and time it takes'''
+        """'Given a start and end gives  dict of possible route and time it takes"""
         possible = self.possibleRoutes(start,end)
        # try:
         times = {route:self.getTime(start,end,route)+self.getTimeToStartStop(start,route) for route in possible} #might need to break this up for try
@@ -64,7 +64,7 @@ class Map:
         return times
 
     def getTime(self, start,end, route):
-        '''Gets time it takes to get from point A to point B on a possible Route'''
+        """Gets time it takes to get from point A to point B on a possible Route"""
         started = False
         done    = False
         order   = self._routes[route].orderstops()
@@ -89,7 +89,7 @@ class Map:
         return time
 
     def getTimeToStartStop(self,start,route):
-        '''Calculates minimum time it takes for a bus on a route to get to a stop from where it currently is'''
+        """Calculates minimum time it takes for a bus on a route to get to a stop from where it currently is"""
         times = [bus.getNextTime()+self.getTime(bus.getLocation(),start,route) for bus in self._routes[route].getBuses()]
         if not times:
             print("Couldn't find a way to get to", start, "on", route)
@@ -97,7 +97,7 @@ class Map:
         return min(times)
 
     def possibleRoutes(self, start,end):
-        '''Returns the possible routes that have start and end on them'''
+        """Returns the possible routes that have start and end on them"""
         if not start in self._stops or not end in self._stops:
             print(start,end)
             raise RuntimeError("start or end not in stops")
@@ -109,16 +109,16 @@ class Map:
         return possible
 
     def update(self):
-        '''Update all objects in map'''
+        """Update all objects in map"""
         for route in self.getRoutes():
             self.getRoutes()[route].update()
         for stop in self.getStops():
             self.getStops()[stop].update()
 
     def getStops(self):
-        '''Returns stop dictionary (Probably bet used with .keys() since don't need to see the objects'''
+        """Returns stop dictionary (Probably bet used with .keys() since don't need to see the objects"""
         return self._stops
 
     def getRoutes(self):
-        '''Returns stop dictionary (Probably bet used with .keys() since don't need to see the objects'''
+        """Returns stop dictionary (Probably bet used with .keys() since don't need to see the objects"""
         return self._routes

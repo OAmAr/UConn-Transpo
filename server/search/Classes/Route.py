@@ -7,13 +7,13 @@ except ImportError:
     from Bus import Bus
 
 class Route:
-    '''
+    """
         Route class takes the name of route shared data
-    '''
+    """
     def __init__(self, color,sdata):#,index = None):
-        '''
+        """
             Basic Initializer, stores buses, stops {stopname, [stopOrder,data]}, routeId, routedatadata, sharedata, stop order
-        '''
+        """
         self._color = color #color must be the name of a route, caps must match
         self._buses = []
         self._stops = dict() #name, [index,dict]
@@ -28,9 +28,9 @@ class Route:
         self.orderstops()
     
     def orderstops(self):
-        '''
+        """
             Either sets the order of stops if it doesnt exist or returns it if it does . [stop0.....stopn] in order of visit
-        '''
+        """
         if self._order:
             return self._order
         #self._order = sorted(self._stops.items(), key = operator.itemgetter(1)[0])
@@ -40,11 +40,11 @@ class Route:
         self._order = phase3
     
     def update(self):
-        '''Updates all buses on route'''
+        """Updates all buses on route"""
         for bus in self.getBuses():
             bus.update()
     def _populateBuses(self):
-        '''Populates bus list based on locations'''
+        """Populates bus list based on locations"""
         temp = []
         locs = self._sdata['locations']
         for bus in locs:
@@ -53,32 +53,32 @@ class Route:
         #self._buses=temp
 
     def _populateStops(self):
-        '''
+        """
             Popuates self._stops dict with key stop name as a string and value [index on route, stop dict on route]
-        '''
+        """
         for i in range(len(self._data["Stops"])):
             stop = self._data["Stops"][i]
             self._stops[stop['Description']]=[i,stop]
     def getBuses(self):
-        '''Returns list of bus objects'''
+        """Returns list of bus objects"""
         return self._buses
 
     def getColor(self):
-        '''Returns color'''
+        """Returns color"""
         return self._color
 
     def getStops(self):
-        '''Returns stop dictionary, not objects'''
+        """Returns stop dictionary, not objects"""
         return self._stops
 
     def getID(self):
-        '''Returns routeId'''
+        """Returns routeId"""
         return self._rtID
 
     def stopsAt(self, stop):
-        '''Returns true if Route stops at stop'''
+        """Returns true if Route stops at stop"""
         return stop in self._stops
 
    # def stopIndex(self, stop):
-    '''stopIndex is a deprecated functions (I forgot about it)'''
+    """stopIndex is a deprecated functions (I forgot about it)"""
     #    return self.getStops()[stop]
