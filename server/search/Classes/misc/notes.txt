@@ -1,2 +1,0 @@
-for shared data:
-	since presumably it will need to update, might not be possible to just import a file where it is a global variable. Will ask about. Maybe a thread to update it periodically? Have to figure out how it works in server.py
