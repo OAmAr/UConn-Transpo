@@ -15,10 +15,10 @@ class Map:
         self._routes = dict() #name and Route
         self._sdata  = data
         self.create(self._sdata)
-        self.update()   
+        self.update()
         if self._sdata['locations']==[]:
             print("Negatory captain, no buses running now (locations is empty)")
-        
+
     def create(self,data):
         """Takes data and intializes stops, routes, all buses, and updates locations"""
         for route in self._sdata['routes']:
@@ -32,7 +32,7 @@ class Map:
         """Takes two [x,y] coords, finds the closeset stops to each location and then the fastest way to get between those sets of stops
             return is of form:
             {(([start,distance from startloc][end,distancefrom endloc]):{route:time}}
-        """ 
+        """
         stopstoconsider=2
         Loc1 = Location(s_loc[0],s_loc[1])
         Loc2 = Location(e_loc[0],e_loc[1])
@@ -44,12 +44,13 @@ class Map:
             stops2.append((stop,self.getStops()[stop].distance(Loc2)))
         stops1=sorted(stops1, key=operator.itemgetter(1))
         stops2=sorted(stops2, key=operator.itemgetter(1))
-        for start in stops1[:stopstoconsider]: 
-            for end in stops2[:stopstoconsider]: 
+
+        for start in stops1[:stopstoconsider]:
+            for end in stops2[:stopstoconsider]:
                 result = self.getDirections(start[0],end[0])
                 if not result == {}:
                     #print(result)
-                    ret[(start,end)] = result 
+                    ret[(start,end)] = result
         return ret
     def getDirections(self, start, end):
         """'Given a start and end gives  dict of possible route and time it takes"""
@@ -82,7 +83,7 @@ class Map:
             if started and order[i] == end:
                 done    = True
                 started = False
-            if started:
+            elif started:
                 time+= stop["SecondsToNextStop"]
                 time+= stop["SecondsAtStop"]
             j+=1

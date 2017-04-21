@@ -1,0 +1,103 @@
+Bus.py
+    M 56:4 Bus.updateLocation - B
+    C 7:0 Bus - A
+    M 11:4 Bus.__init__ - A
+    M 24:4 Bus.getRoute - A
+    M 30:4 Bus.getColor - A
+    M 35:4 Bus.getNumber - A
+    M 40:4 Bus.getNextTime - A
+    M 45:4 Bus.getLocation - A
+    M 50:4 Bus.update - A
+facade.py
+    M 8:4 BusData.getBus - A
+    C 1:0 BusData - A
+    M 2:4 BusData.__init__ - A
+    M 19:4 BusData.getLatitude - A
+httpsrv.py
+    M 13:4 BusHTTPRequestHandler.do_GET - A
+    C 4:0 BusHTTPRequestHandler - A
+    M 5:4 BusHTTPRequestHandler.__init__ - A
+    M 9:4 BusHTTPRequestHandler.setup - A
+    C 25:0 BusHTTPServer - A
+    M 26:4 BusHTTPServer.__init__ - A
+Location.py
+    M 4:4 Location.__init__ - A
+    C 2:0 Location - A
+    M 9:4 Location.getLocation - A
+    M 12:4 Location.setX - A
+    M 15:4 Location.setY - A
+    M 18:4 Location.getX - A
+    M 21:4 Location.getY - A
+    M 24:4 Location.resetCoords - A
+    M 28:4 Location.distance - A
+Map.py
+    M 70:4 Map.getTime - B
+    M 103:4 Map.possibleRoutes - B
+    M 31:4 Map.getDirectionsLoc - A
+    C 10:0 Map - A
+    M 22:4 Map.create - A
+    M 54:4 Map.getDirections - A
+    M 95:4 Map.getTimeToStartStop - A
+    M 115:4 Map.update - A
+    M 12:4 Map.__init__ - A
+    M 122:4 Map.getStops - A
+    M 126:4 Map.getRoutes - A
+Route.py
+    M 30:4 Route.orderstops - A
+    M 46:4 Route._populateBuses - A
+    M 42:4 Route.update - A
+    M 55:4 Route._populateStops - A
+    C 9:0 Route - A
+    M 13:4 Route.__init__ - A
+    M 62:4 Route.getBuses - A
+    M 66:4 Route.getColor - A
+    M 70:4 Route.getStops - A
+    M 74:4 Route.getID - A
+    M 78:4 Route.stopsAt - A
+server.py
+    F 57:0 updateMap - A
+    F 13:0 parseJSON - A
+    F 18:0 updateBusLocations - A
+    F 22:0 updateStopInfo - A
+    F 26:0 updateRoutes - A
+    F 30:0 sharedDataUpdaterFactory - A
+    F 45:0 rideSystemsLoop - A
+    F 61:0 main - A
+shared_data.notes
+    ERROR: invalid syntax (<unknown>, line 1)
+Stop.py
+    M 16:4 Stop._setRoutes - A
+    C 8:0 Stop - A
+    M 9:4 Stop.__init__ - A
+    M 23:4 Stop.getName - A
+    M 25:4 Stop.getRoutes - A
+    M 27:4 Stop.update - A
+testLoc.py
+    C 7:0 testLoc - A
+    M 8:1 testLoc.testNoParInit - A
+    M 12:1 testLoc.testgetBoth - A
+    M 16:1 testLoc.testGetSingle - A
+    M 21:1 testLoc.testSetSingle - A
+    M 30:1 testLoc.testReset - A
+testMap.py
+    C 7:0 testLoc - A
+    M 8:4 testLoc.testNonrealStop - A
+    M 17:4 testLoc.testBasic - A
+testStop.py
+    C 9:0 testStop - A
+    M 11:1 testStop.testStopLoc - A
+    M 14:1 testStop.testStopName - A
+    M 18:1 testStop.testStopRoutes - A
+    M 21:1 testStop.testStops2 - A
+    M 24:1 testStop.testStopNoRoutes - A
+udp_responder.py
+    M 23:4 BusUDPHandler.handle - A
+    M 8:4 BusUDPHandler.buildPacket - A
+    C 4:0 BusUDPHandler - A
+    M 5:4 BusUDPHandler.setup - A
+    M 36:4 BusUDPHandler.setSharedDataSource - A
+    C 39:0 BusUDPServer - A
+    M 40:4 BusUDPServer.__init__ - A
+
+86 blocks (classes, functions, methods) analyzed.
+Average complexity: A (1.744186046511628)
