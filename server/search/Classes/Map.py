@@ -44,15 +44,20 @@ class Map:
             stops2.append((stop,self.getStops()[stop].distance(Loc2)))
         stops1=sorted(stops1, key=operator.itemgetter(1))
         stops2=sorted(stops2, key=operator.itemgetter(1))
+
         for start in stops1[:stopstoconsider]:
             for end in stops2[:stopstoconsider]:
-                ret[(start,end)] = self.getDirections(start[0],end[0])
+                result = self.getDirections(start[0],end[0])
+                if not result == {}:
+                    #print(result)
+                    ret[(start,end)] = result
         return ret
     def getDirections(self, start, end):
         """'Given a start and end gives  dict of possible route and time it takes"""
         possible = self.possibleRoutes(start,end)
        # try:
         times = {route:self.getTime(start,end,route)+self.getTimeToStartStop(start,route) for route in possible} #might need to break this up for try
+        times1 = {route: times[route] for route in times if not times[route] == float('inf')}
        # except TypeError:
        #     print("If getting no error check the try except in getdirections in map")
        #     if self.getTime(start,end,possible[0]) == None:
@@ -61,7 +66,7 @@ class Map:
        #     if self.getTimeToStartStop(start,possible[0]) == None:
        #         print("No bus running")
        #         return -1
-        return times
+        return times1
 
     def getTime(self, start,end, route):
         """Gets time it takes to get from point A to point B on a possible Route"""

@@ -1,0 +1,226 @@
+Bus.py
+    LOC: 40
+    LLOC: 49
+    SLOC: 69
+    Comments: 5
+    Single comments: 2
+    Multi: 27
+    Blank: 4
+    - Comment Stats
+        (C % L): 12%
+        (C % S): 7%
+        (C + M % L): 80%
+cyclocomp.txt
+    LOC: 0
+    LLOC: 0
+    SLOC: 0
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+data.py
+    LOC: 15
+    LLOC: 15
+    SLOC: 19
+    Comments: 4
+    Single comments: 4
+    Multi: 0
+    Blank: 3
+    - Comment Stats
+        (C % L): 27%
+        (C % S): 21%
+        (C + M % L): 27%
+docs/conf.py
+    LOC: 50
+    LLOC: 25
+    SLOC: 123
+    Comments: 85
+    Single comments: 73
+    Multi: 0
+    Blank: 40
+    - Comment Stats
+        (C % L): 170%
+        (C % S): 69%
+        (C + M % L): 170%
+facade.py
+    LOC: 18
+    LLOC: 18
+    SLOC: 18
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 2
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+httpsrv.py
+    LOC: 28
+    LLOC: 27
+    SLOC: 30
+    Comments: 2
+    Single comments: 2
+    Multi: 0
+    Blank: 5
+    - Comment Stats
+        (C % L): 7%
+        (C % S): 7%
+        (C + M % L): 7%
+__init__.py
+    LOC: 0
+    LLOC: 0
+    SLOC: 0
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+Location.py
+    LOC: 21
+    LLOC: 30
+    SLOC: 30
+    Comments: 0
+    Single comments: 9
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+Map.py
+    LOC: 97
+    LLOC: 110
+    SLOC: 121
+    Comments: 13
+    Single comments: 20
+    Multi: 4
+    Blank: 7
+    - Comment Stats
+        (C % L): 13%
+        (C % S): 11%
+        (C + M % L): 18%
+Route.py
+    LOC: 49
+    LLOC: 61
+    SLOC: 75
+    Comments: 10
+    Single comments: 14
+    Multi: 12
+    Blank: 9
+    - Comment Stats
+        (C % L): 20%
+        (C % S): 13%
+        (C + M % L): 45%
+server.py
+    LOC: 72
+    LLOC: 72
+    SLOC: 85
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 9
+    - Comment Stats
+        (C % L): 18%
+        (C % S): 15%
+        (C + M % L): 18%
+shared_data.notes
+    ERROR: SyntaxError at line: 7
+Stop.py
+    LOC: 22
+    LLOC: 22
+    SLOC: 26
+    Comments: 4
+    Single comments: 4
+    Multi: 0
+    Blank: 2
+    - Comment Stats
+        (C % L): 18%
+        (C % S): 15%
+        (C + M % L): 18%
+tda.py
+    LOC: 1
+    LLOC: 2
+    SLOC: 1
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+testLoc.py
+    LOC: 36
+    LLOC: 36
+    SLOC: 36
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 7
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+testMap.py
+    LOC: 15
+    LLOC: 15
+    SLOC: 18
+    Comments: 3
+    Single comments: 3
+    Multi: 0
+    Blank: 6
+    - Comment Stats
+        (C % L): 20%
+        (C % S): 17%
+        (C + M % L): 20%
+testStop.py
+    LOC: 26
+    LLOC: 26
+    SLOC: 26
+    Comments: 0
+    Single comments: 0
+    Multi: 0
+    Blank: 4
+    - Comment Stats
+        (C % L): 0%
+        (C % S): 0%
+        (C + M % L): 0%
+tm2.py
+    LOC: 6
+    LLOC: 6
+    SLOC: 8
+    Comments: 2
+    Single comments: 2
+    Multi: 0
+    Blank: 0
+    - Comment Stats
+        (C % L): 33%
+        (C % S): 25%
+        (C + M % L): 33%
+udp_responder.py
+    LOC: 39
+    LLOC: 31
+    SLOC: 52
+    Comments: 13
+    Single comments: 13
+    Multi: 0
+    Blank: 6
+    - Comment Stats
+        (C % L): 33%
+        (C % S): 25%
+        (C + M % L): 33%
+** Total **
+    LOC: 535
+    LLOC: 545
+    SLOC: 737
+    Comments: 154
+    Single comments: 159
+    Multi: 43
+    Blank: 104
