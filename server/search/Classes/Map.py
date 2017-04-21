@@ -31,7 +31,7 @@ class Map:
     def getDirectionsLoc(self, s_loc, e_loc):
         """Takes two [x,y] coords, finds the closeset stops to each location and then the fastest way to get between those sets of stops
             return is of form:
-                {(([start,distance from startloc][end,distancefrom endloc]):{route:time}}
+            {(([start,distance from startloc][end,distancefrom endloc]):{route:time}}
         """ 
         stopstoconsider=2
         Loc1 = Location(s_loc[0],s_loc[1])

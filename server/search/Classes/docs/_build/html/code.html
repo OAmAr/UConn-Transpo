@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Auto Generated Documention &#8212; Classes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Classes’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-search.Classes.Map">
+<span id="auto-generated-documention"></span><h1>Auto Generated Documention<a class="headerlink" href="#module-search.Classes.Map" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="search.Classes.Map.Map">
+<em class="property">class </em><code class="descclassname">search.Classes.Map.</code><code class="descname">Map</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Map.Map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main class, takes shared data and intializes all actors</p>
+<dl class="method">
+<dt id="search.Classes.Map.Map.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Map.Map.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes data and intializes stops, routes, all buses, and updates locations</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Map.Map.getDirections">
+<code class="descname">getDirections</code><span class="sig-paren">(</span><em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Map.Map.getDirections" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8216;Given a start and end gives  dict of possible route and time it takes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Map.Map.getDirectionsLoc">
+<code class="descname">getDirectionsLoc</code><span class="sig-paren">(</span><em>s_loc</em>, <em>e_loc</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Map.Map.getDirectionsLoc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes two [x,y] coords, finds the closeset stops to each location and then the fastest way to get between those sets of stops
+return is of form:
+{(([start,distance from startloc][end,distancefrom endloc]):{route:time}}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Map.Map.getRoutes">
+<code class="descname">getRoutes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Map.Map.getRoutes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns stop dictionary (Probably bet used with .keys() since don&#8217;t need to see the objects</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Map.Map.getStops">
+<code class="descname">getStops</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Map.Map.getStops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns stop dictionary (Probably bet used with .keys() since don&#8217;t need to see the objects</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Map.Map.getTime">
+<code class="descname">getTime</code><span class="sig-paren">(</span><em>start</em>, <em>end</em>, <em>route</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Map.Map.getTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets time it takes to get from point A to point B on a possible Route</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Map.Map.getTimeToStartStop">
+<code class="descname">getTimeToStartStop</code><span class="sig-paren">(</span><em>start</em>, <em>route</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Map.Map.getTimeToStartStop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates minimum time it takes for a bus on a route to get to a stop from where it currently is</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Map.Map.possibleRoutes">
+<code class="descname">possibleRoutes</code><span class="sig-paren">(</span><em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Map.Map.possibleRoutes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the possible routes that have start and end on them</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Map.Map.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Map.Map.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update all objects in map</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-search.Classes.Route"></span><dl class="class">
+<dt id="search.Classes.Route.Route">
+<em class="property">class </em><code class="descclassname">search.Classes.Route.</code><code class="descname">Route</code><span class="sig-paren">(</span><em>color</em>, <em>sdata</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Route.Route" title="Permalink to this definition">¶</a></dt>
+<dd><p>Route class takes the name of route shared data</p>
+<dl class="method">
+<dt id="search.Classes.Route.Route.getBuses">
+<code class="descname">getBuses</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Route.Route.getBuses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list of bus objects</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Route.Route.getColor">
+<code class="descname">getColor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Route.Route.getColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns color</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Route.Route.getID">
+<code class="descname">getID</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Route.Route.getID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns routeId</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Route.Route.getStops">
+<code class="descname">getStops</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Route.Route.getStops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns stop dictionary, not objects</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Route.Route.orderstops">
+<code class="descname">orderstops</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Route.Route.orderstops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Either sets the order of stops if it doesnt exist or returns it if it does . [stop0.....stopn] in order of visit</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Route.Route.stopsAt">
+<code class="descname">stopsAt</code><span class="sig-paren">(</span><em>stop</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Route.Route.stopsAt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if Route stops at stop</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Route.Route.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Route.Route.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates all buses on route</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-search.Classes.Bus"></span><dl class="class">
+<dt id="search.Classes.Bus.Bus">
+<em class="property">class </em><code class="descclassname">search.Classes.Bus.</code><code class="descname">Bus</code><span class="sig-paren">(</span><em>number</em>, <em>color</em>, <em>route</em>, <em>sdata</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Bus.Bus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bus class initializes with Vehicle ID, route color, route object, and shared data</p>
+<dl class="method">
+<dt id="search.Classes.Bus.Bus.getColor">
+<code class="descname">getColor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Bus.Bus.getColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns route name</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Bus.Bus.getLocation">
+<code class="descname">getLocation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Bus.Bus.getLocation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns next stop</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Bus.Bus.getNextTime">
+<code class="descname">getNextTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Bus.Bus.getNextTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns time to next stop</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Bus.Bus.getNumber">
+<code class="descname">getNumber</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Bus.Bus.getNumber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Vehicle ID</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Bus.Bus.getRoute">
+<code class="descname">getRoute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Bus.Bus.getRoute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns route object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Bus.Bus.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Bus.Bus.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates bus data</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Bus.Bus.updateLocation">
+<code class="descname">updateLocation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Bus.Bus.updateLocation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates location data</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-search.Classes.Stop"></span><span class="target" id="module-search.Classes.Location"></span><dl class="class">
+<dt id="search.Classes.Location.Location">
+<em class="property">class </em><code class="descclassname">search.Classes.Location.</code><code class="descname">Location</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Location.Location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Location Class, extended by Stop</p>
+<dl class="method">
+<dt id="search.Classes.Location.Location.distance">
+<code class="descname">distance</code><span class="sig-paren">(</span><em>loc</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Location.Location.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns float distance between two locations</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Location.Location.getLocation">
+<code class="descname">getLocation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Location.Location.getLocation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns coordinates</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Location.Location.getX">
+<code class="descname">getX</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Location.Location.getX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns X coordinate</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Location.Location.getY">
+<code class="descname">getY</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Location.Location.getY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns y Coordinate</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Location.Location.resetCoords">
+<code class="descname">resetCoords</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Location.Location.resetCoords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets new coordinates</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Location.Location.setX">
+<code class="descname">setX</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Location.Location.setX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets x coordinate</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="search.Classes.Location.Location.setY">
+<code class="descname">setY</code><span class="sig-paren">(</span><em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#search.Classes.Location.Location.setY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets y coordinate</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Classes&#8217;s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/code.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Omar Param Cameron.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/code.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
