@@ -8,6 +8,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -30,7 +31,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import java.util.ArrayList;
+import java.lang.Math;
 
 import java.io.IOException;
 import java.util.List;
@@ -49,6 +53,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationRequest locationRequest;
     private TextView get_places;
     protected static final String TAG = "MapsActivity";
+    private ArrayList<Marker> markers = new ArrayList<Marker>();
+    private ArrayList<LatLng> latLngs = new ArrayList<LatLng>();
 
 
     @Override
@@ -122,9 +128,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         e.printStackTrace();
                     }
                     Address address = addressList.get(0); //we want to store the Address into address object in Android class.
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(latLng).title("from geocoder"));
-                    mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                    latLngs.add(new LatLng(address.getLatitude(), address.getLongitude()));
+                    mMap.addMarker(new MarkerOptions().position(latLngs.get(0)).title("from geocoder"));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLng(latLngs.get(0)));
                 }
             }
         });
@@ -137,13 +143,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Storrs CT and move the camera
-        LatLng latLng = new LatLng(41.807422, -72.254040);
-        mMap.addMarker(new MarkerOptions().position(latLng)).setVisible(true);
+        latLngs.add(new LatLng(41.807422, -72.254040));
         // Move the camera instantly to location with a zoom of 15.
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngs.get(0), 16));
         // Zoom in, animating the camera.
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
-        mMap.addMarker(new MarkerOptions().position(latLng).title("UConn Storrs, CT"));
+        for (int i = 0; i < 36; i++) { // make 36 markers for lols
+            markers.add(mMap.addMarker(new MarkerOptions().position(latLngs.get(0))));
+            markers.get(i).setVisible(true);
+        }
+        mMap.addMarker(new MarkerOptions().position(latLngs.get(0)).title("UConn Storrs, CT"));
+        new Thread(new Runnable() {
+            public void run() {
+                for (int i = 0; i < 1000; i++) {
+                    final int finalI = i;
+                    for (int j = 0; j < 36; j++) {
+                        final int finalJ = j;
+                        findViewById(R.id.btSearch).post(new Runnable() { // this assumes the search button is permanent...
+                            public void run() {
+                                markers.get(finalJ).setPosition(new LatLng(latLngs.get(0).latitude + 0.00001 * finalI * Math.cos(finalJ),
+                                                                           latLngs.get(0).longitude + 0.00001 * finalI * Math.sin(finalJ)));
+                            }
+                        });
+                    }
+                    SystemClock.sleep(50);
+                }
+            }
+        }).start();
 
 
         //float zoomLevel = 16.0;
@@ -185,6 +211,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ); */
 
 
+
     }
 
     @Override
@@ -214,6 +241,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
         }
+
 
 
     }
