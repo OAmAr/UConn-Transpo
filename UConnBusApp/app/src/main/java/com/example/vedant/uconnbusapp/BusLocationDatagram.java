@@ -14,6 +14,10 @@ public class BusLocationDatagram {
     public float longitude;
     public float groundSpeed;
 
+    /** Construct a BusLocationDatagram from a byte array containing packet data.
+     * 
+     * @param buffer Byte array containing packet data (big endian).
+     */
     BusLocationDatagram(byte[] buffer) {
         java.nio.ByteBuffer wrapped = java.nio.ByteBuffer.wrap(buffer);
         flags = wrapped.get();
@@ -24,5 +28,5 @@ public class BusLocationDatagram {
         latitude = wrapped.getFloat();
         longitude = wrapped.getFloat();
         groundSpeed = wrapped.getFloat();
-    }   
+    }
 }
