@@ -1,6 +1,7 @@
 package com.example.vedant.uconnbusapp;
 
 /** Parse the information out of a Bus Location Datagram.
+ *
  * @author Cameron Morris
  */
 
@@ -15,7 +16,8 @@ public class BusLocationDatagram {
     public float groundSpeed;
 
     /** Construct a BusLocationDatagram from a byte array containing packet data.
-     * 
+     *
+     * Make sure the byte array contains actual packet data or this will error.
      * @param buffer Byte array containing packet data (big endian).
      */
     BusLocationDatagram(byte[] buffer) {

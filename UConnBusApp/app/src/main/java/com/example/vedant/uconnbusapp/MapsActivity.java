@@ -1,7 +1,6 @@
 package com.example.vedant.uconnbusapp;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -11,14 +10,19 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 import android.widget.ZoomControls;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -39,22 +43,29 @@ import java.lang.Math;
 import java.io.IOException;
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private GoogleMap mMap;
     private final static int MY_PERMISSION_FINE_LOCATION = 101;
     ZoomControls zoom;
     Button markBt;
     Button Navigation;
+    Button clear;
     Button geoLocationBt;
     Double myLatitude = null;
     Double myLongitude = null;
     private GoogleApiClient googleApiClient;
     private LocationRequest locationRequest;
     private TextView get_places;
+    private String[] mPlanetTitles;
+    private ListView mDrawerList;
     protected static final String TAG = "MapsActivity";
     private ArrayList<Marker> markers = new ArrayList<Marker>();
     private ArrayList<LatLng> latLngs = new ArrayList<LatLng>();
+    private DrawerLayout mDrawer;
+    private Toolbar toolbar;
+    private NavigationView nvDrawer;
+    private ActionBarDrawerToggle drawerToggle;
 
 
     @Override
@@ -70,7 +81,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this).build();
-
 
         locationRequest = new LocationRequest();
         locationRequest.setInterval(15 * 1000);
@@ -95,7 +105,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        Navigation = (Button) findViewById(R.id.Navigation);
+        /*Navigation = (Button) findViewById(R.id.Navigation);
         Navigation.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -103,6 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(new Intent(getApplicationContext(),NavigationDrawer.class));
               }
          });
+         */
 
                 markBt = (Button) findViewById(R.id.btMark);
         markBt.setOnClickListener(new View.OnClickListener() {
@@ -170,6 +181,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         }).start();
+
+
+        // This is help add a marker to any location that we like/visit.
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                mMap.addMarker(new MarkerOptions().position(latLng).title("from onMapClick"));
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+            }
+        });
+
+        //This would clear the marker on the Map.
+        clear = (Button) findViewById(R.id.btClear);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              mMap.clear();
+            }
+        });
 
 
         //float zoomLevel = 16.0;
