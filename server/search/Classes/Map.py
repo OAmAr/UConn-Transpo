@@ -127,3 +127,5 @@ class Map:
     def getRoutes(self):
         """Returns stop dictionary (Probably bet used with .keys() since don't need to see the objects"""
         return self._routes
+# m = Map(shared_data)
+# print(getDirections("North Garage", "Student Union"))

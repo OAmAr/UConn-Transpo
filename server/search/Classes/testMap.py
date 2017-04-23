@@ -39,15 +39,18 @@ def getAllTimes(routeColor):
 def getTime(start,stop,route):
     results = getAllTimes(route)
     for i in getAllTimes(route):
+        pass
 
-print(getAllTimes('Blue'))
+# print(getAllTimes('Blue'))
 class testLoc(unittest.TestCase):
     def testNonrealStop(self):
         m = Map(testData)
-        print(m.getTime('North Garage', 'Hilltop Dorms Southbound','Blue'))
-        # myMap = Map(shared_data)
-        # print(myMap.getStops())
-        print(m.getTime('North Garage', 'Hilltop Dorms Southbound','Blue'))
+        # print(m.getTime('North Garage', 'Hilltop Dorms Southbound','Blue'))
+        # # myMap = Map(shared_data)
+        # # print(myMap.getStops())
+        # print(m.getTime('North Garage', 'Hilltop Dorms Southbound','Blue'))
+        # print(m.getTime('North Garage', 'Hilltop Dorms Southbound','Blue'))
+        m.getDirections("Buckley, North Garage")
 
 
     	# self.assertEquals(myMap.getTime("MSB","Non-real location"),None) # maybe this should raise an error?
