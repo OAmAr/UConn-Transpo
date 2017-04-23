@@ -1,6 +1,6 @@
 import unittest
 try:
-    from search.Classes.Location import Location
+    from server.search.Classes.Location import Location
 except ImportError:
     from Location import Location
 

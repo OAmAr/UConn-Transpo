@@ -1,8 +1,8 @@
 import operator
 try:
-    from search.Classes.Stop  import Stop
-    from search.Classes.Route import Route
-    from search.Classes.Location import Location
+    from server.search.Classes.Stop  import Stop
+    from server.search.Classes.Route import Route
+    from server.search.Classes.Location import Location
 except ImportError:
     from Location import Location
     from Stop import Stop
