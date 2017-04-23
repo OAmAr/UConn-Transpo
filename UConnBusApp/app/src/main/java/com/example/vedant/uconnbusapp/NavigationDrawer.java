@@ -1,4 +1,7 @@
+/*
+
 package com.example.vedant.uconnbusapp;
+
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -99,3 +102,4 @@ public class NavigationDrawer extends AppCompatActivity
         return true;
     }
 }
+*/
