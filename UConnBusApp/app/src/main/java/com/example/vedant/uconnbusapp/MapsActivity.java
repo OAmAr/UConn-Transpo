@@ -130,18 +130,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onClick(View view) {
                 EditText searchText = (EditText) findViewById(R.id.etLocationEntry);
                 String search = searchText.getText().toString(); //that we don't pass null screen or black screen otherwise it would crash.
-                if (search != null && !search.equals("")) {
+                if (!search.equals("")) {
                     List<android.location.Address> addressList = null;
                     Geocoder geocoder = new Geocoder(MapsActivity.this);
                     try {
                         addressList = geocoder.getFromLocationName(search, 1);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        Address address = addressList.get(0); //we want to store the Address into address object in Android class.
+                        latLngs.add(new LatLng(address.getLatitude(), address.getLongitude()));
+                        mMap.addMarker(new MarkerOptions().position(latLngs.get(latLngs.size() - 1)).title("from geocoder"));
+                        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLngs.get(latLngs.size() - 1)));
+                        // new thread here latLngs.get(latLngs.size() - 1).latitude
+                    } catch (Exception e) {//(IOException e) {
+                        // silently fail like a boss (no actually this is terrible we should fix it later)
+                        //e.printStackTrace();
                     }
-                    Address address = addressList.get(0); //we want to store the Address into address object in Android class.
-                    latLngs.add(new LatLng(address.getLatitude(), address.getLongitude()));
-                    mMap.addMarker(new MarkerOptions().position(latLngs.get(0)).title("from geocoder"));
-                    mMap.animateCamera(CameraUpdateFactory.newLatLng(latLngs.get(0)));
+
                 }
             }
         });
@@ -166,13 +169,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.addMarker(new MarkerOptions().position(latLngs.get(0)).title("UConn Storrs, CT"));
         new Thread(new Runnable() {
             public void run() {
-                for (int i = 0; i < 1000; i++) {
+                for (int i = 0; i < 100; i++) {
                     final int finalI = i;
                     for (int j = 0; j < 36; j++) {
                         final int finalJ = j;
-                        findViewById(R.id.btSearch).post(new Runnable() { // this assumes the search button is permanent...
+                        findViewById(R.id.btMark).post(new Runnable() { // this assumes the search button is permanent...
                             public void run() {
-                                markers.get(finalJ).setPosition(new LatLng(latLngs.get(0).latitude + 0.00001 * finalI * Math.cos(finalJ),
+                                markers.get(finalJ).setPosition(new LatLng(latLngs.get(0).latitude +  0.00001 * finalI * Math.cos(finalJ),
                                                                            latLngs.get(0).longitude + 0.00001 * finalI * Math.sin(finalJ)));
                             }
                         });
