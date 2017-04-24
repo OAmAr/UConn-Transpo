@@ -1,11 +1,12 @@
 import unittest
 try:
     from Map import Map
-    from data import shared_data
+    #from data import shared_data
     from tda import testData
 except ImportError:
-    from Map import Map
-    from data import shared_data
+    from server.search.Classes.tda import testData
+    from server.search.Classes.Map import Map
+    #from server.search.Classes.data import shared_data
 
 # for i in range(len(shared_data['routes'])):
 #     print(i,shared_data['routes'][i]['Description'])
@@ -39,8 +40,8 @@ def getAllTimes(routeColor):
 def getTime(start,stop,route):
     results = getAllTimes(route)
     for i in getAllTimes(route):
+        print(getAllTimes('Blue'))
 
-print(getAllTimes('Blue'))
 class testLoc(unittest.TestCase):
     def testNonrealStop(self):
         m = Map(testData)

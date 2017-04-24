@@ -1,7 +1,7 @@
 import operator
 try:
-    from search.Classes.facade import BusData as RouteData
-    from search.Classes.Bus import Bus
+    from server.search.Classes.facade import BusData as RouteData
+    from server.search.Classes.Bus import Bus
 except ImportError:
     from facade import BusData as RouteData
     from Bus import Bus
