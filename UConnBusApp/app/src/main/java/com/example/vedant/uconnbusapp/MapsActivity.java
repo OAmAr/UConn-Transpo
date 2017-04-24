@@ -162,28 +162,35 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngs.get(0), 16));
         // Zoom in, animating the camera.
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
-        for (int i = 0; i < 36; i++) { // make 36 markers for lols
+        for (int i = 0; i < 100; i++) { // make 36 markers for lols
             markers.add(mMap.addMarker(new MarkerOptions().position(latLngs.get(0))));
             markers.get(i).setVisible(true);
         }
         mMap.addMarker(new MarkerOptions().position(latLngs.get(0)).title("UConn Storrs, CT"));
-        new Thread(new Runnable() {
-            public void run() {
-                for (int i = 0; i < 100; i++) {
-                    final int finalI = i;
-                    for (int j = 0; j < 36; j++) {
-                        final int finalJ = j;
-                        findViewById(R.id.btMark).post(new Runnable() { // this assumes the search button is permanent...
+        for (int i = 15; i < 60; i++) {
+            SystemClock.sleep(1);
+            final int finalI = i;
+            new Thread(new Runnable() {
+                public void run() {
+                    BusPositionUpdater updater = new BusPositionUpdater((byte) finalI);
+                    while (true) {
+                        BusLocationDatagram dgram = updater.updatePosition();
+                        SystemClock.sleep(2000);
+                        final BusLocationDatagram tmpdgram = dgram;
+                        findViewById(R.id.btMark).post(new Runnable() { // this assumes the mark button is permanent...
                             public void run() {
-                                markers.get(finalJ).setPosition(new LatLng(latLngs.get(0).latitude +  0.00001 * finalI * Math.cos(finalJ),
-                                                                           latLngs.get(0).longitude + 0.00001 * finalI * Math.sin(finalJ)));
+                                try {
+                                    markers.get(finalI).setPosition(new LatLng(tmpdgram.latitude, tmpdgram.longitude));
+                                } catch (Exception e) {
+                                    //System.out.print(e);
+                                    //int a = 1 / 0;
+                                }
                             }
                         });
                     }
-                    SystemClock.sleep(50);
                 }
-            }
-        }).start();
+            }).start();
+        }
 
 
         // This is help add a marker to any location that we like/visit.

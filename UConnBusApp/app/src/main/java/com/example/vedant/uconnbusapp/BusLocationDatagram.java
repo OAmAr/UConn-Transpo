@@ -31,4 +31,18 @@ public class BusLocationDatagram {
         longitude = wrapped.getFloat();
         groundSpeed = wrapped.getFloat();
     }
+
+    BusLocationDatagram() {}
+
+    void updateInfo(byte[] buffer) {
+        java.nio.ByteBuffer wrapped = java.nio.ByteBuffer.wrap(buffer);
+        flags = wrapped.get();
+        seconds = wrapped.get();
+        heading = wrapped.getShort();
+        RouteID = wrapped.getShort();
+        VehicleID = wrapped.getShort();
+        latitude = wrapped.getFloat();
+        longitude = wrapped.getFloat();
+        groundSpeed = wrapped.getFloat();
+    }
 }
