@@ -34,6 +34,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -167,6 +168,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             markers.get(i).setVisible(true);
         }
         mMap.addMarker(new MarkerOptions().position(latLngs.get(0)).title("UConn Storrs, CT"));
+
+        // test code pls remove
+        String[] icons = {"Blue Bus Logo.png",
+                "Charters and Specials Bus Logo.png",
+                "Green Bus Logo.png",
+                "Late Night Bus Logo.png",
+                "Orange Bus Logo.png",
+                "Purple Bus Logo.png",
+                "Red Bus Logo.png",
+                "Silver Bus Logo.png",
+                "Storm Shuttles Bus Logo.png",
+                "UCONN Health Bus Logo.png",
+                "Yellow Bus Logo.png"};
+        for (int i = 0; i < 36; i++) {
+            markers.get(i).setPosition(new LatLng(latLngs.get(0).latitude + 0.001 * i * Math.cos(i*10),
+                    latLngs.get(0).longitude + 0.001 * i * Math.sin(i*10)));
+            markers.get(i).setIcon(BitmapDescriptorFactory.fromAsset(icons[i % icons.length]));
+        }
+
         for (int i = 15; i < 60; i++) {
             SystemClock.sleep(1);
             final int finalI = i;
@@ -181,6 +201,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             public void run() {
                                 try {
                                     markers.get(finalI).setPosition(new LatLng(tmpdgram.latitude, tmpdgram.longitude));
+                                    markers.get(finalI).setIcon(BitmapDescriptorFactory.defaultMarker((float)4.0*finalI));
                                 } catch (Exception e) {
                                     //System.out.print(e);
                                     //int a = 1 / 0;
