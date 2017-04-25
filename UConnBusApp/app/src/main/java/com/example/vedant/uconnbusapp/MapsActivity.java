@@ -189,13 +189,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //    markers.get(i).setIcon(BitmapDescriptorFactory.fromAsset(icons.get(new Short((short)5))));
         //    markers.get(i).setVisible(true);
         //}
-        final int[] vid = {40,
-        38,
-        47,
-        50,
-        37,
-        55,
-        57};
+        final int[] vid = {
+                40,
+                35,
+                38,
+                17,
+                47,
+                50,
+                37,
+                55,
+                57,
+                58};
         for (int i = 0; i < vid.length; i++) {
             SystemClock.sleep(1);
             final int finalI = i;
