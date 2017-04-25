@@ -165,7 +165,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
         for (int i = 0; i < 100; i++) { // make 36 markers for lols
             markers.add(mMap.addMarker(new MarkerOptions().position(latLngs.get(0))));
-            markers.get(i).setVisible(true);
+            markers.get(i).setVisible(false);
         }
         mMap.addMarker(new MarkerOptions().position(latLngs.get(0)).title("UConn Storrs, CT"));
 
@@ -185,6 +185,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             markers.get(i).setPosition(new LatLng(latLngs.get(0).latitude + 0.001 * i * Math.cos(i*10),
                     latLngs.get(0).longitude + 0.001 * i * Math.sin(i*10)));
             markers.get(i).setIcon(BitmapDescriptorFactory.fromAsset(icons[i % icons.length]));
+            markers.get(i).setVisible(true);
         }
 
         for (int i = 15; i < 60; i++) {
@@ -202,6 +203,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 try {
                                     markers.get(finalI).setPosition(new LatLng(tmpdgram.latitude, tmpdgram.longitude));
                                     markers.get(finalI).setIcon(BitmapDescriptorFactory.defaultMarker((float)4.0*finalI));
+                                    markers.get(finalI).setVisible(true);
                                 } catch (Exception e) {
                                     //System.out.print(e);
                                     //int a = 1 / 0;
