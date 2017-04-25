@@ -37,6 +37,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 /** This is the main activity for maps.
  * @author Vedant Patel
@@ -204,18 +205,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             final int finalI = i;
             new Thread(new Runnable() {
                 public void run() {
-                    BusPositionUpdater updater = new BusPositionUpdater((byte) finalI);
+                    BusPositionUpdater updater = new BusPositionUpdater((byte) vid[finalI]);
+                    final boolean set = false;
                     while (true) {
                         BusLocationDatagram dgram = updater.updatePosition();
-                        SystemClock.sleep(550);
+                        SystemClock.sleep(5 50);
                         final BusLocationDatagram tmpdgram = dgram;
                         findViewById(R.id.btMark).post(new Runnable() { // this assumes the mark button is permanent...
                             public void run() {
                                 try {
-                                    markers.get(finalI).setPosition(new LatLng(tmpdgram.latitude, tmpdgram.longitude));
+                                    //markers.get(finalI).setPosition(new LatLng(tmpdgram.latitude, tmpdgram.longitude));
+                                    animateMarker(markers.get(finalI), new LatLng(tmpdgram.latitude, tmpdgram.longitude), false);
+                                    if (!set) {
+                                        markers.get(finalI).setIcon(BitmapDescriptorFactory.fromAsset(icons.get(tmpdgram.RouteID)));
+                                        markers.get(finalI).setVisible(true);
+                                    }
                                 } catch (Exception e) {
                                     //System.out.print(e);
-                                    //int a = 1 / 0;
+                                    //int a = 1 / 0;o
                                 }
                             }
                         });
@@ -223,6 +230,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }).start();
         }
+
 
 
         // This is help add a marker to any location that we like/visit.
