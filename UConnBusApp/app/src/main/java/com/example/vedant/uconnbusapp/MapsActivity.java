@@ -3,13 +3,11 @@ package com.example.vedant.uconnbusapp;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,7 +15,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -32,7 +29,6 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -41,7 +37,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
 
 /** This is the main activity for maps.
  * @author Vedant Patel
@@ -164,65 +159,29 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Zoom in, animating the camera.
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
         for (int i = 0; i < 100; i++) { // make 36 markers for lols
-            markers.add(mMap.addMarker(new MarkerOptions().position(latLngs.get(0))));
-            markers.get(i).setVisible(false);
+            markers.add(mMap.addMarker(new MarkerOptions().position(latLngs.get(0))
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))));
+
+            markers.get(i).setVisible(true);
         }
-        //mMap.addMarker(new MarkerOptions().position(latLngs.get(0)).title("UConn Storrs, CT"));
-
-
-        final HashMap<Short, String> icons = new HashMap<Short, String>();
-        icons.put((short)5, "Blue Bus Logo.png");
-        icons.put((short)20, "Charters and Specials Bus Logo.png");
-        icons.put((short)22, "Green Bus Logo.png");
-        icons.put((short)13, "Late Night Bus Logo.png");
-        icons.put((short)19, "Orange Bus Logo.png");
-        icons.put((short)25, "Purple Bus Logo.png");
-        icons.put((short)3, "Red Bus Logo.png");
-        icons.put((short)24, "Silver Bus Logo.png");
-        icons.put((short)29, "Storm Shuttles Bus Logo.png");
-        icons.put((short)30, "UCONN Health Bus Logo.png");
-        icons.put((short)21, "Yellow Bus Logo.png");
-        // test code pls remove
-        //for (int i = 0; i < 36; i++) {
-        //    markers.get(i).setPosition(new LatLng(latLngs.get(0).latitude + 0.001 * i * Math.cos(i*10),
-        //            latLngs.get(0).longitude + 0.001 * i * Math.sin(i*10)));
-        //    markers.get(i).setIcon(BitmapDescriptorFactory.fromAsset(icons.get(new Short((short)5))));
-        //    markers.get(i).setVisible(true);
-        //}
-        final int[] vid = {
-                40,
-                35,
-                38,
-                17,
-                47,
-                50,
-                37,
-                55,
-                57,
-                58};
-        for (int i = 0; i < vid.length; i++) {
+        mMap.addMarker(new MarkerOptions().position(latLngs.get(0)).title("UConn Storrs, CT"));
+        for (int i = 15; i < 60; i++) {
             SystemClock.sleep(1);
             final int finalI = i;
             new Thread(new Runnable() {
                 public void run() {
-                    BusPositionUpdater updater = new BusPositionUpdater((byte) vid[finalI]);
-                    final boolean set = false;
+                    BusPositionUpdater updater = new BusPositionUpdater((byte) finalI);
                     while (true) {
                         BusLocationDatagram dgram = updater.updatePosition();
-                        SystemClock.sleep(750);
+                        SystemClock.sleep(2000);
                         final BusLocationDatagram tmpdgram = dgram;
                         findViewById(R.id.btMark).post(new Runnable() { // this assumes the mark button is permanent...
                             public void run() {
                                 try {
-                                    //markers.get(finalI).setPosition(new LatLng(tmpdgram.latitude, tmpdgram.longitude));
-                                    animateMarker(markers.get(finalI), new LatLng(tmpdgram.latitude, tmpdgram.longitude), false);
-                                    if (!set) {
-                                        markers.get(finalI).setIcon(BitmapDescriptorFactory.fromAsset(icons.get(tmpdgram.RouteID)));
-                                        markers.get(finalI).setVisible(true);
-                                    }
+                                    markers.get(finalI).setPosition(new LatLng(tmpdgram.latitude, tmpdgram.longitude));
                                 } catch (Exception e) {
                                     //System.out.print(e);
-                                    //int a = 1 / 0;o
+                                    //int a = 1 / 0;
                                 }
                             }
                         });
@@ -309,40 +268,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
                 break;
         }
-    }
-
-    public void animateMarker(final Marker marker, final LatLng toPosition,
-                              final boolean hideMarker) {
-        final Handler handler = new Handler();
-        final long start = SystemClock.uptimeMillis();
-        Projection proj = mMap.getProjection();
-        Point startPoint = proj.toScreenLocation(marker.getPosition());
-        final LatLng startLatLng = proj.fromScreenLocation(startPoint);
-        final long duration = 700;
-        final LinearInterpolator interpolator = new LinearInterpolator();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                long elapsed = SystemClock.uptimeMillis() - start;
-                double t = interpolator.getInterpolation((float) ((double)elapsed
-                        / (double) duration));
-                double lng = t * toPosition.longitude + (1 - t)
-                        * startLatLng.longitude;
-                double lat = t * toPosition.latitude + (1 - t)
-                        * startLatLng.latitude;
-                marker.setPosition(new LatLng(lat, lng));
-                if (t < 1.0) {
-                    // Post again 16ms later.
-                    handler.postDelayed(this, 16);
-                } else {
-                    if (hideMarker) {
-                        marker.setVisible(false);
-                    } else {
-                        marker.setVisible(true);
-                    }
-                }
-            }
-        });
     }
 
     @Override

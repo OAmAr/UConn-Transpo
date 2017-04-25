@@ -36,7 +36,6 @@ public class BusPositionUpdater {
             DatagramSocket sock = new DatagramSocket();
             DatagramPacket packet = new DatagramPacket(sendBuf, sendBuf.length, address, 6269);
             sock.send(packet);
-            sock.setSoTimeout(700);
             packet = new DatagramPacket(recvBuf, recvBuf.length);
             sock.receive(packet);
             return new BusLocationDatagram(packet.getData());
