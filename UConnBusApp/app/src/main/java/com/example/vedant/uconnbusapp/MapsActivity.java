@@ -211,7 +211,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     final boolean set = false;
                     while (true) {
                         BusLocationDatagram dgram = updater.updatePosition();
-                        SystemClock.sleep(550);
+                        SystemClock.sleep(850);
                         final BusLocationDatagram tmpdgram = dgram;
                         findViewById(R.id.btMark).post(new Runnable() { // this assumes the mark button is permanent...
                             public void run() {
