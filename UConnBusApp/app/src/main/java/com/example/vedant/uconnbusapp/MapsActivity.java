@@ -167,12 +167,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             markers.add(mMap.addMarker(new MarkerOptions().position(latLngs.get(0))
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))));
 
-            markers.get(i).setVisible(true);
+            markers.get(i).setVisible(false);
         }
 
         //mMap.addMarker(new MarkerOptions().position(latLngs.get(0)).title("UConn Storrs, CT"));
-
-
         final HashMap<Short, String> icons = new HashMap<Short, String>();
         icons.put((short)5, "Blue Bus Logo.png");
         icons.put((short)20, "Charters and Specials Bus Logo.png");
