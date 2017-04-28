@@ -1,8 +1,8 @@
 # Overview
 
-Our application idea is a mobile application on the Android platform for UConn’s Bus System. An app does currently exist, however the app has major flaws that we seek to correct. The main feature of this app will be a route search, which takes some location on campus and a desired destination as inputs and returns the most efficient route using UConn’s busses. The app may have other features as well depending on progression rates, like walking directions. Overall, the app will run more efficiently and crash less than the current one as well. Because we as students at very in-tune are the end-user, we are at a very advantageous position for selecting a development methodology. We are leaning towards using Agile development due to the closeness of our team, however we will decide definitely in the coming week after learning more about different methods in class.
+Our application idea is a mobile application on the Android platform for UConn’s Bus System. An app does currently exist, however the app has major flaws that we seek to correct. The main feature of this app will be a route search, which takes some location on campus and a desired destination as inputs and returns the most efficient route using UConn’s busses. The app may have other features as well depending on progression rates, like walking directions. Overall, the app will run more efficiently and crash less than the current one as well. Because we as students at very in-tune are the end-user, we are at a very advantageous position for selecting a development methodology. We are leaning towards using Agile development due to the closeness of our team, however we will decide definitely in the coming week after learning more about different methods in class. We are almost done with our app, just need to have some finishing touches and we will be able to launch it. 
 
-Currently we have 6973 lines of code written. We currently have 103 git commits for basic documentation, data fetching code, and this progress report.For other metrics, we have a method count of 176 and an average cyclomatic complexity of 1.5. The maximum cyclomatic complexity is 3. Our maximum depth of inheritance is 7 and our median is 1.
+Currently we have 28659 lines of code written. We currently have 103 git commits for basic documentation, data fetching code, and this progress report.For other metrics, we have a method count of 236 and an average cyclomatic complexity of 1.70. The maximum cyclomatic complexity is 3. Our maximum depth of inheritance is 7 and our median is 3.
 
 # SEMAT
 
@@ -10,14 +10,6 @@ Currently we have 6973 lines of code written. We currently have 103 git commits 
 
 The stakeholders in this situation are ourselves, since we are the ones getting the grade. We could also call Professor Edgington a stakeholder since he is judging the quality of our project. If the project goes as expected, there is potential for UConn Transportation to be a stakeholder along with the greater UConn community, as they are the ones that would use such an application.
 
-### Recognized
-
-Stakeholder groups identified Key stakeholder groups represented Responsibilities defined
-
-### Addressed
-
-A solution has been produced that demonstrably addresses opportunity.
-A usable system is available.
 
 ### Represented
 
@@ -86,10 +78,6 @@ We planned out everything and started working on Mock-up design Currently we are
 
 Required result clear Initiator identified Priority clear
 
-### Started
-
-Development work has started Work progress is monitored Work broken down into actionable items with clear definition of done. Team members are accepting and progressing work items.
-
 ### Under Control
 
 Work going well. Unplanned work & re-work under control. Work items completed within estimated time. Measures tracked.
@@ -128,7 +116,7 @@ Team members are making progress as planned. Tools also support the way of worki
 
 ### Action Items
 
-For our software developent method, we are using the mixture of agile and waterfall methods because this methods would help us have a strong documentation so, in future we can work on this project to make it stable and fix bugs.
+For our software developent method, we are using the mixture of agile and waterfall methods because this methods would help us have a strong documentation so, in future we can work on this project to make it stable and fix bugs. We kind of used both methods since there were times that we didn't plan things out beforehand 
 
 ## Team
 
@@ -149,14 +137,6 @@ Members working as one unit. Communaction is open and honest. Memebers focused o
 
 Team working effeciently and effectively Adapt to changing context. Waste is continually eliminated.
 
-### Action Items
-
-We need to decide when we can meet routinely to discuss progress outside of class.
-
-### Initiated 
-
-Work initiator known and work constraints are clear. Priority of work is clear. 
-
 
 ## Requirements
 
@@ -165,7 +145,7 @@ Work initiator known and work constraints are clear. Priority of work is clear.
 Stakeholders agree system is to be produced Users identified Opportunity clear
 
 ### Coherent 
-The big picture is clear and shared with all the group members.Important usage scenarios explained and Priorities are clear. Impact is understood.
+The big picture is clear and shared with all the group members.Important usage scenarios explained and Priorities are clear. Impact is understood. All the conflicts are addressed. 
 
 ### Bounded
 
@@ -177,4 +157,7 @@ Address conflicts that arise due to data and system configuration constraints.
 
 ### Acceptable 
 Requirements describe a solution acceptable to the stakeholders.
-The rate of cahnge to be agreed, requirements are low but, still have a lot of minor changes to work on. 
+The rate of cahnge to be agreed, requirements are low but, still have a lot of minor changes to work on. Our value is clear. 
+
+### Fulfilled
+The system fully satifies the requirements and the need. Even though the product is not fully ready to launch. 
