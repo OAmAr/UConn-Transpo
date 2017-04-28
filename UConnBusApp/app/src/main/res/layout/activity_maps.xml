@@ -1,8 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:id="@+id/drawer_layout" >
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout">
 
     <LinearLayout
         android:id="@+id/ll1"
@@ -13,9 +14,14 @@
 
         <EditText
             android:id="@+id/etLocationEntry"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4" />
+            android:layout_height="47dp"
+            android:layout_weight="4.00"
+            android:hint="Search"
+            android:inputType="text"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+            android:visibility="visible" />
 
         <Button
             android:id="@+id/btSearch"
@@ -32,13 +38,23 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ll1" />
+        android:layout_below="@+id/ll1"
+        tools:layout="@layout/activity_maps"/>
+
 
   <!--  <fragment
         android:id="@+id/place_autocomplete_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment" /> -->
+    <ImageButton
+        android:id="@+id/image_button_btNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:src="@mipmap/directionicon"
+        android:text="Route" />
 
     <Button
         android:id="@+id/btMark"
@@ -64,14 +80,14 @@
         android:layout_above="@+id/btMark"
         android:layout_alignParentRight="true" />
 
-    <Button
-        android:id="@+id/Navigation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/ll1"
-        android:text="Button" />
-
 
 </RelativeLayout>
+
+<!--<android.support.design.widget.NavigationView
+android:id="@+id/nvView"
+android:layout_width="wrap_content"
+android:layout_height="match_parent"
+android:layout_gravity="start"
+android:background="@android:color/white"
+app:menu="@menu/drawer_view" />
+    </android.support.v4.widget.DrawerLayout>   -->

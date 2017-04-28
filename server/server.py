@@ -3,10 +3,15 @@ import json
 import threading
 import socketserver
 from time import sleep
-from udp_responder import BusUDPHandler, BusUDPServer
-from httpsrv import BusHTTPRequestHandler, BusHTTPServer
-from search.Classes.Map import Map
-#from Map import Map
+try:
+    from udp_responder import BusUDPHandler, BusUDPServer
+    from search.Classes.Map import Map
+    from httpsrv import BusHTTPRequestHandler, BusHTTPServer
+except:
+    from server.search.Classes.Map import Map
+    from server.udp_responder import BusUDPHandler, BusUDPServer
+    from server.httpsrv import BusHTTPRequestHandler, BusHTTPServer
+
 shared_data = dict()
 shared_data_lock = threading.Lock()
 

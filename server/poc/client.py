@@ -2,7 +2,7 @@ import socket
 import sys
 import struct
 
-HOST, PORT ="localhost",6269# "cam-dorm.tk", 6269
+HOST, PORT = "cam-dorm.tk", 6269
 data = 46
 
 # SOCK_DGRAM is the socket type to use for UDP sockets

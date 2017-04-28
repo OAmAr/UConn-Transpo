@@ -1,9 +1,10 @@
 try:
-    from search.Classes.facade import BusData
+    from server.search.Classes.facade import BusData
 except ImportError:
     from facade import BusData
-#figure out how bus figures out which stop it is at, figure out how bus data is supposed to work, figure out how bus number works
-#add timetostop, nextstop,getlocation
+
+
+
 class Bus:
     """
         Bus class initializes with Vehicle ID, route color, route object, and shared data
