@@ -1,0 +1,53 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\setlength{\parskip}{\baselineskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+
+\begin{document}
+{\centering{\Large Android Development Notes\\ \vspace{0.3em}}} \vspace{2em}
+
+This document is intended to provide some pointers and useful hints for getting started with Android Development. 
+
+{
+\centering
+\includegraphics[width=6cm]{thesearentthedroidsyouarelookingfor}\\ 
+}
+
+\begin{itemize}
+\item Android studio download link: \url{https://developer.android.com/studio/index.html}. Remember to get both the IDE and the SDK The Windows installer gives you both but on Linux you need to download them separately. It's a good idea to keep track of where your SDK is installed because you'll need it for things. 
+
+\item Anything you can do in Java you can pretty much do in Android. For example, importing java.util.ArrayList. 
+
+\item Maps API \url{https://developers.google.com/maps/documentation/android-api/start}
+
+\item The emulator requires an Intel CPU I think\ldots It gave me an error when I tried to run it on a machine with an AMD CPU. 
+
+\item If you're trying to run the app on a physical device and don't see it in the deployment target list, make sure you have drivers installed. You can get them here \url{https://developer.android.com/studio/run/oem-usb.html#Drivers}
+
+\item If you start the emulator from the command line there are tons of cool options for testing different scenarios. See \url{https://developer.android.com/studio/run/emulator-commandline.html}.
+
+\item To invoke a gradle build from the command line use the gradle wrapper included at the root of the project (either gradlew or gradlew.bat). See \url{https://developer.android.com/studio/build/building-cmdline.html}
+
+\item You add new classes by right clicking where you want to add them in the project view and then under "new" choose "Java Class". You can also add a bunch of other things here, like activities and UI components. 
+
+\item To add images or other assets you have to put them in the assets folder (/app/assets). Then you can access them in Java code as if they are in the same directory as the executable. (Is this the classpath? I'm not very familiar with Java so someone please correct this if it is or isn't.)
+
+\item If a method name starts with "on" then it is probably for handling an event.
+
+\item Android Studio will probably complain about an unregistered VCS root. This can be safely ignored. 
+
+\item Instant run is nice but only worked for me about 5\% of the time. 
+
+\item Try to use as few threads as possible. Two threads = good, 20 threads = bahd. 
+\end{itemize}
+\end{document}
